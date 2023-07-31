@@ -21,10 +21,9 @@ namespace CityCompanyCard_API.Card
             this.hasInstance = true;
         }
 
-        public override bool OnPlay(IEventObject eventObject)
+        public override void OnPlay(IEventObject eventObject)
         {
             //打出卡牌
-            return true;
         }
 
         public override ICard Clone()
@@ -40,6 +39,11 @@ namespace CityCompanyCard_API.Card
         public void InitHealth(int value)
         {
             health.init(value);
+        }
+
+        public override void OnAfterPlay(IEventObject eventObject)
+        {
+            throw new NotImplementedException();
         }
     }
 }

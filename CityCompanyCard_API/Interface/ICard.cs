@@ -29,7 +29,9 @@ namespace CityCompanyCard_API.Card
 
         public string getUUID() { return UUID; }
 
-        public abstract Boolean OnPlay(IEventObject eventObject);
+        public abstract void OnPlay(IEventObject eventObject);
+        public abstract void OnAfterPlay(IEventObject eventObject);
+        
         public virtual ICard Clone()
         {
             // 使用二进制序列化和反序列化实现深拷贝

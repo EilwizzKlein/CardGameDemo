@@ -34,7 +34,6 @@ namespace CityCompanyCard_base.Zone
                 unusedCommand.Remove(command);
                 usingCommand.Add(command);
             }
-
         }
         public void RemoveCommand(ICommandCard command)
         {

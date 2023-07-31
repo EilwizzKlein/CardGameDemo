@@ -30,7 +30,9 @@ if (flag)
 }
 //运行单元测试
 //testBuff.start();
-testCommand.start();
+//testCommand.start();
+testMoveCommand.start();
+
 while (TestHandle.flag)
 {
     string command = Console.ReadLine()!;

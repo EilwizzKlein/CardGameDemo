@@ -15,16 +15,15 @@ namespace CityCompanyCard_base.Manager
 {
     public class UnitCardManager:ICardManager
     {
-        public override bool playCard(ICard res, IEventObject eventObject)
+        public override bool PlayCard(ICard res, IEventObject eventObject)
 
         {
             //beforePlay
-            IUnitCard render = (IUnitCard)res.Clone();
             EventObject_PlayUnitCard unitEventObject = (EventObject_PlayUnitCard)eventObject;
             unitEventObject.whereFrom.cardList.Remove(res);
-            ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[unitEventObject.tile].cardList.Add(render);
-
-            return res.OnPlay(eventObject);
+            ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[unitEventObject.tile].cardList.Add(res);
+            res.OnPlay(eventObject);
+            return true;
         }
 
     }

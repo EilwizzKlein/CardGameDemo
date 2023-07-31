@@ -18,9 +18,9 @@ namespace CityCompanyCard_API.Manager
         public  Boolean playCard(ICard res, IEventObject eventObject) {
             //beforePlay
             if (managerList.TryGetValue(res.type, out ICardManager cardManager)) {
-                cardManager.playCard(res, eventObject);
+                cardManager.PlayCard(res, eventObject);
             }
-            return res.OnPlay(eventObject);
+            return true;
         }
 
         public Boolean registManagerList(CardType cardType, ICardManager cardManager) {

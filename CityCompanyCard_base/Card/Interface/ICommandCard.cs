@@ -18,9 +18,13 @@ namespace CityCompanyCard_base.Card.Interface
             this.hasInstance = false;
         }
 
-        public override bool OnPlay(IEventObject eventObject)
+        public override void OnPlay(IEventObject eventObject)
         {
-            return true;
+        }
+
+
+        public override void OnAfterPlay(IEventObject eventObject)
+        {
         }
     }
 }

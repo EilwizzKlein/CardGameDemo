@@ -8,10 +8,10 @@ namespace CityCompanyCard_API.BattleGround
 {
     public class IBattleGround
     {
-        public string name;
+        public string name = "";
         public int width;
         public int height;
-        public IBattleGroundTile[] battleGrounds;
+        public IBattleGroundTile[]? battleGrounds;
 
         public void Init()
         {

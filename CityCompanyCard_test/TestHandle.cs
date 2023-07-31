@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using CityCompanyCard_base.BattleGround;
 
 namespace CityCompanyCard_test
 {
@@ -37,6 +38,9 @@ namespace CityCompanyCard_test
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);
+                    break;
+                case "BATTLE":
+                    showBattle(commandBody);
                     break;
                 //case "COPY":
                 //    IRenderUnitCard c = (IRenderUnitCard)CardManager.generateRenderCard(player.hand.cardList[0], typeof(IRenderUnitCard));
@@ -83,5 +87,15 @@ namespace CityCompanyCard_test
                 ApplicationContext.Instance.cardManager.playCard(card, eventObject);
             }
         }
+
+        public static void showBattle(string body)
+        {
+            //获取区域
+            string[] command = body.Split('|');
+            Console.WriteLine(ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[Int16.Parse(command[0])].cardList.Count);
+
+
+        }
+        
     }
 }
