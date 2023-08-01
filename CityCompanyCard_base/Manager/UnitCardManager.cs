@@ -19,9 +19,8 @@ namespace CityCompanyCard_base.Manager
 
         {
             //beforePlay
-            EventObject_PlayUnitCard unitEventObject = (EventObject_PlayUnitCard)eventObject;
-            unitEventObject.whereFrom.cardList.Remove(res);
-            ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[unitEventObject.tile].cardList.Add(res);
+            eventObject.resZone![0].cardList.Remove(res);
+            eventObject.targetZone![0].cardList.Add(res);
             res.OnPlay(eventObject);
             return true;
         }

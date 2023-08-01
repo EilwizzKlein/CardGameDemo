@@ -19,6 +19,7 @@ namespace CityCompanyCard_API
         public Dictionary<string,IBattleGround> BattleZone = new Dictionary<string, IBattleGround>(); //战场元素
         public Boolean isInit = false; //是否完成初始化
         private  IMode? _mode = null; //模式对象
+        public Thread SelectorThread = null;
         public CardManager cardManager = null; 
 
         public  void  SetMode(IMode mode) {

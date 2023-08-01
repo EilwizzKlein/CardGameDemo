@@ -81,9 +81,11 @@ namespace CityCompanyCard_test
             if (card is IUnitCard && command.Length >= 2)
             {
                 //构建EventObject;
-                EventObject_PlayUnitCard eventObject = new EventObject_PlayUnitCard(card);
-                eventObject.tile = int.Parse(command[1]);
-                eventObject.whereFrom = player.hand;
+                IEventObject eventObject = new IEventObject();
+                eventObject.resCard = new ICard[] { card };
+                int index = int.Parse(command[1]);
+                eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[index] };
+                eventObject.resZone = new IZone[] { player.hand };
                 ApplicationContext.Instance.cardManager.playCard(card, eventObject);
             }
         }

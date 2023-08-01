@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Card.Command;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.Card.Unit;
@@ -34,35 +35,42 @@ namespace CityCompanyCard_test.unitTest
             //玩家打出一张牌到 1 2 3 4 5 格
             //构建EventObject;
             IUnitCard unitCard = (IUnitCard)player.hand.cardList[0];
-            EventObject_PlayUnitCard eventObject = new EventObject_PlayUnitCard(unitCard);
-            eventObject.whereFrom = player.hand;
-            eventObject.tile = 1;
+            IZone[] hands = new IZone[] { player.hand };
+
+
+
+
+
+            IEventObject eventObject = new IEventObject();
+            eventObject.resCard = new ICard[] { unitCard };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[1] };
+            eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
-            eventObject = new EventObject_PlayUnitCard(unitCard);
-            eventObject.whereFrom = player.hand;
-            eventObject.tile = 2;
+            eventObject.resCard = new ICard[] { unitCard };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[2] };
+            eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
-            eventObject = new EventObject_PlayUnitCard(unitCard);
-            eventObject.whereFrom = player.hand;
-            eventObject.tile = 3;
+            eventObject.resCard = new ICard[] { unitCard };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[3] };
+            eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
-            eventObject = new EventObject_PlayUnitCard(unitCard);
-            eventObject.whereFrom = player.hand;
-            eventObject.tile = 4;
+            eventObject.resCard = new ICard[] { unitCard };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[4] };
+            eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             Console.WriteLine($"玩家当前手牌数为1:${player.hand.cardList.Count}");
 
             unitCard = (IUnitCard)player.hand.cardList[0];
-            eventObject = new EventObject_PlayUnitCard(unitCard);
-            eventObject.whereFrom = player.hand;
-            eventObject.tile = 5;
+            eventObject.resCard = new ICard[] { unitCard };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[5] };
+            eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             Console.WriteLine($"玩家当前手牌数为0:${player.hand.cardList.Count}");
