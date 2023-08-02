@@ -14,19 +14,28 @@ namespace CityCompanyCard_API.Interface
         public Boolean isEternal; //在转移区域时是否需要清空
         public Boolean isTemp; //是否为临时buff
         public int stayCount; //持续计数
+        private object _target; //持续计数(ICard 或者 IPlayer)
 
-     
+
         public abstract void OnGainBuff(Object target);
 
         public abstract void OnRemoveBuff(Object target);
 
-        public virtual void OnTurnEnd(Object target) {
-            if (isTemp)
-            {
-                if (stayCount-- == 0) {
-                    OnRemoveBuff(target);
-                }
-            }
+        public abstract void OnUpdateBuff(Object target);
+     
+        public void GainBuff(Object target) {
+            _target = target;
+            OnGainBuff(target);
+        }
+
+        public void UpdateBuff()
+        {
+            OnUpdateBuff(_target);
+        }
+
+        public void RemoveBuff()
+        {
+            OnRemoveBuff(_target);
         }
     }
 }
