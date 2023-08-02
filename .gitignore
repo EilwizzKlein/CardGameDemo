@@ -2,3 +2,7 @@
 /bin
 /obj
 /.vs
+/CityCompanyCard_API/obj
+/CityCompanyCard_base/obj
+/CityCompanyCard_test/obj
+/CityCompanyCard_API/.vs/*
