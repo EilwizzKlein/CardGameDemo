@@ -1,4 +1,4 @@
 #编译后对象
-/bin/
-/obj/
-/.vs/
+/bin
+/obj
+/.vs
