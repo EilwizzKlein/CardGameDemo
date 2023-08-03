@@ -46,5 +46,10 @@ namespace CityCompanyCard_base.Buff
                 temp.attack.reduceValue(attackValue);
             }
         }
+
+        public override void OnUpdateBuff(object target)
+        {
+           
+        }
     }
 }

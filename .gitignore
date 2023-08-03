@@ -6,3 +6,6 @@
 /CityCompanyCard_base/obj
 /CityCompanyCard_test/obj
 /CityCompanyCard_API/.vs/*
+/CityCompanyCard_base/bin/
+/CityCompanyCard_API/bin/
+/CityCompanyCard_test/bin/
