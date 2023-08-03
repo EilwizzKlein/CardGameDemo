@@ -1,11 +1,12 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Card.Command;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.Card.Unit;
+using CityCompanyCard_base.Dictionary;
 using CityCompanyCard_base.EventObject;
+using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
 using System;
 using System.Collections.Generic;
@@ -43,25 +44,25 @@ namespace CityCompanyCard_test.unitTest
 
             IEventObject eventObject = new IEventObject();
             eventObject.resCard = new ICard[] { unitCard };
-            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[1] };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[1] };
             eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = new ICard[] { unitCard };
-            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[2] };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[2] };
             eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = new ICard[] { unitCard };
-            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[3] };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[3] };
             eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = new ICard[] { unitCard };
-            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[4] };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[4] };
             eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 
@@ -69,7 +70,7 @@ namespace CityCompanyCard_test.unitTest
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = new ICard[] { unitCard };
-            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[5] };
+            eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[5] };
             eventObject.resZone = hands;
             ApplicationContext.Instance.cardManager.playCard(unitCard, eventObject);
 

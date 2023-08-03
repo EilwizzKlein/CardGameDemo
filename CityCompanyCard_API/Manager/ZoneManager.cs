@@ -38,6 +38,13 @@ namespace CityCompanyCard_API.Manager
             return res.cardList.Remove(card);
         }
 
+        public static Boolean moveCardsToZone(IZone res, IZone target,ICard card)
+        {
+            res.cardList.Remove(card);
+            target.cardList.Add(card);
+            return true;
+        }
+
         public static Boolean moveCardsToZone(IZone res, IZone target)
         {
             return moveCardsToZone(res, target, 1);

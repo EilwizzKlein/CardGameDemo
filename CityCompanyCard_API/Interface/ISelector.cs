@@ -11,7 +11,7 @@ namespace CityCompanyCard_API.Interface
     /// </summary>
     public abstract class ISelector
     {
-        public abstract Boolean handleSelector(IEventObject ev);
+        public abstract Boolean handleSelector(in IEventObject ev);
 
         /// <summary>
         /// 进行选择
@@ -24,7 +24,7 @@ namespace CityCompanyCard_API.Interface
             ApplicationContext.Instance.SelectorThread = new Thread(() =>
             {
                 // 子线程的逻辑，这里以计算值为例
-                isSucess = handleSelector(ev);
+                isSucess = handleSelector(in ev);
             });
             ApplicationContext.Instance.SelectorThread.Start();
             ApplicationContext.Instance.SelectorThread.Join();

@@ -1,7 +1,8 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_base.BattleGround;
+using CityCompanyCard_base.Dictionary;
+using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Manager;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace CityCompanyCard_base.Mode
             //添加玩家
 
             //设置主要战场
-            app.BattleZone.Add(BattleGroundFactory.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattleGroundFactory.MAIN_BATTLE_GROUND));
+            app.BattleZone.Add(BattlegroundConst.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattlegroundConst.MAIN_BATTLE_GROUND));
             //注册卡牌管理器
             app.cardManager = new CityCompanyCard_API.Manager.CardManager();
             app.cardManager.registManagerList(CardType.Unit, new UnitCardManager());

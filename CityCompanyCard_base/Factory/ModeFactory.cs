@@ -1,12 +1,13 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.Mode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_base.Mode
+namespace CityCompanyCard_base.Factory
 {
     public class ModeFactory
     {
@@ -15,11 +16,12 @@ namespace CityCompanyCard_base.Mode
 
         public static IMode GetModeByType(string mode)
         {
-            if (mode == ModeFactory.NORMAL_MODE)
+            if (mode == NORMAL_MODE)
             {
                 return new NormalMode_ModeBO();
             }
-            else {
+            else
+            {
                 throw new Exception("未匹配到Mode对象");
             }
         }

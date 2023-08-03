@@ -2,13 +2,13 @@
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Card.Unit;
-using CityCompanyCard_base.Mode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.Factory;
 
 namespace CityCompanyCard_test
 {

@@ -1,10 +1,12 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_base.BattleGround;
+using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.EventObject;
+using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
+using CityCompanyCard_base.Selector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +29,8 @@ namespace CityCompanyCard_base.Card.Command
         public override void OnPlay(IEventObject eventObject)
         {
             flag = true;
-            Thread thread = new Thread(async () =>
-            {
                 // 子线程的逻辑，这里以计算值为例
-                OnAsyncPlay(eventObject);
-            });
-            thread.Start();
-            thread.Join();
+            OnAsyncPlay(eventObject);
         }
 
         public bool OnAsyncPlay(IEventObject eventObject)
@@ -45,38 +42,35 @@ namespace CityCompanyCard_base.Card.Command
             int actionPoint = player.actionPoint.getCurrent();
             //选择一个单位执行移动
             //开启一个选择进程
-            Console.WriteLine("请输入要选择的对象,输入End结束");
-            string command = Console.ReadLine();
-
-            if (command.ToUpper() == "END")
+            if (actionPoint <= 0)
             {
-                flag = false;
+                Console.WriteLine("玩家体力用完了");
+                flag = true;
             }
             else
             {
-                if (actionPoint <= 0)
-                {
-                    flag = true;
-                }
                 //选择该格子上的生物(如果有的话)
                 //获取棋盘
                 player.actionPoint.reduceValue(1);
-                int place = 0;
-                int.TryParse(command, out place);
-                if (ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[place].cardList.Count > 0)
-                {
-                    IUnitCard unit = (IUnitCard)ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[place].cardList[0];
-                    ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[place].cardList.Remove(unit);
-                    Console.WriteLine("请输入要选择的格子");
-                    command = Console.ReadLine();
-                    int.TryParse(command, out place);
-                    ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[place].cardList.Add(unit);
+                flag = new Selector_OneUnit().startISeletor(ev) && new Selector_OneZone().startISeletor(ev);
+                if (flag) {
+                    ZoneManager.moveCardsToZone(ev.resZone[0], ev.targetZone[0], ev.resCard[0]);
                 }
-                flag = true;
             }
             if (flag)
             {
+                Console.WriteLine("输入End结束");
+                string command = Console.ReadLine();
+
+                if (command.ToUpper() == "END")
+                {
+                    flag = false;
+                }
+                else
+                {
+
                 OnAsyncPlay(eventObject);
+                }
             }
             return flag;
 

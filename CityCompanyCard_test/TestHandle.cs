@@ -11,7 +11,8 @@ using System.Numerics;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using CityCompanyCard_base.BattleGround;
+using CityCompanyCard_base.Factory;
+using CityCompanyCard_base.Dictionary;
 
 namespace CityCompanyCard_test
 {
@@ -84,7 +85,7 @@ namespace CityCompanyCard_test
                 IEventObject eventObject = new IEventObject();
                 eventObject.resCard = new ICard[] { card };
                 int index = int.Parse(command[1]);
-                eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[index] };
+                eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[index] };
                 eventObject.resZone = new IZone[] { player.hand };
                 ApplicationContext.Instance.cardManager.playCard(card, eventObject);
             }
@@ -94,7 +95,7 @@ namespace CityCompanyCard_test
         {
             //获取区域
             string[] command = body.Split('|');
-            Console.WriteLine(ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattleGroundFactory.MAIN_BATTLE_GROUND).battleGrounds[Int16.Parse(command[0])].cardList.Count);
+            Console.WriteLine(ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[Int16.Parse(command[0])].cardList.Count);
 
 
         }
