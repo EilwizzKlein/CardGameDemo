@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface
 {
+    /// <summary>
+    /// 触发器自定义类
+    /// </summary>
     public abstract class ITrigger
     {
         public bool deleteSelf { get; protected set; }

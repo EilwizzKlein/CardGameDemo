@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API.BO;
 using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.renderObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace CityCompanyCard_API.Card
     [Serializable]
     public class IUnitCard : ICard
     {
-        public renderModelBO attack = new renderModelBO();
-        public renderModelBO health = new renderModelBO();
+        public renderInt attack = new renderInt();
+        public renderInt health = new renderInt();
         public delegate int AttackDelegate(in int item);
         public IUnitCard()
         {

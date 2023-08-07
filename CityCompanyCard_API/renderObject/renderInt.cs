@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_API.BO
+namespace CityCompanyCard_API.renderObject
 {
-    public class renderModelBO
+    public class renderInt
     {
         private int _origin;
         private int _max;

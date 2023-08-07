@@ -1,5 +1,4 @@
-﻿using CityCompanyCard_API.BattleGround;
-using CityCompanyCard_API.Interface;
+﻿using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Manager;
 using System;
 using System.Collections.Generic;
