@@ -86,6 +86,7 @@ namespace CityCompanyCard_test.unitTest
             EventObject_PlayCommandCard commandEV = new EventObject_PlayCommandCard(player);
             commandEV.resPlayer = new IPlayer[] { player };
            List<IZone> sss = fliter.runFliter(commandEV);
+        //测试
 
             //执行
             ApplicationContext.Instance.cardManager.playCard(player.command.cardList[0], commandEV);
