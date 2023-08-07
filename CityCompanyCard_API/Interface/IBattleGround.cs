@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CityCompanyCard_API.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace CityCompanyCard_API.Interface
         public int width;
         public int height;
         public IZone[]? battleGrounds;
+        public List<ICard> CardList = new List<ICard>();
 
         public void Init()
         {

@@ -10,7 +10,7 @@ namespace CityCompanyCard_API.Manager
 {
     public class ZoneManager
     {
-        public static Boolean moveCardsToZone(IZone res, IZone target, int number)
+        public static Boolean drawCardsToZone(IZone res, IZone target, int number)
         {
 
             if (res is null || target is null)
@@ -28,26 +28,51 @@ namespace CityCompanyCard_API.Manager
             }
 
             List<ICard> elementsToMove = res.cardList.GetRange(0, number);
-            target.cardList.AddRange(elementsToMove);
+            foreach (var item in elementsToMove)
+            {
+                item.setZone(target);
+                target.cardList.Add(item);
+
+            }
             res.cardList.RemoveRange(0, number);
             return true;
 
         }
 
+        public static Boolean moveCardToBattleGround(IBattleGround battleGround,ICard card, IZone targetZone) {
+            if (!battleGround.CardList.Contains(card))
+            {
+                battleGround.CardList.Add(card);
+            }
+            card.GetZone().cardList?.Remove(card);
+            card.setZone(targetZone);
+            targetZone?.cardList.Add(card);
+            return true;
+
+
+        }
+        public static Boolean removeCardToBattleGround(IBattleGround battleGround, ICard card)
+        {
+            battleGround.CardList.Remove(card);
+            return removeCardByCard(card.GetZone(), card);
+        }
         public static Boolean removeCardByCard(IZone res,ICard card) {
-            return res.cardList.Remove(card);
+            res.cardList.Remove(card);
+            return true;
+
         }
 
         public static Boolean moveCardsToZone(IZone res, IZone target,ICard card)
         {
             res.cardList.Remove(card);
             target.cardList.Add(card);
+            card.setZone(res);
             return true;
         }
 
         public static Boolean moveCardsToZone(IZone res, IZone target)
         {
-            return moveCardsToZone(res, target, 1);
+            return drawCardsToZone(res, target, 1);
         }
     }
 }

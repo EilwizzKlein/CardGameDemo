@@ -35,7 +35,7 @@ namespace CityCompanyCard_test
                     flag = false;
                     break;
                 case "DRAW":
-                    ZoneManager.moveCardsToZone(player.deck, player.hand, 1);
+                    ZoneManager.drawCardsToZone(player.deck, player.hand, 1);
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);

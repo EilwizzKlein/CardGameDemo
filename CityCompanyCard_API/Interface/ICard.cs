@@ -25,6 +25,7 @@ namespace CityCompanyCard_API.Card
         public string effect; //效果文字描述
         public Boolean hasInstance; //是否有实体
         private List<IBuff> buffs = new List<IBuff>();
+        private IZone currentZone = null;
         private ICard? raw; //原始卡实体
 
         public string getUUID() { return UUID; }
@@ -57,5 +58,12 @@ namespace CityCompanyCard_API.Card
                 buffs.Remove(buff);
             }
         }
+
+        public void setZone(IZone zone)
+        {
+            this.currentZone = zone;
+        }
+
+        public IZone GetZone() { return this.currentZone; }
     }
 }

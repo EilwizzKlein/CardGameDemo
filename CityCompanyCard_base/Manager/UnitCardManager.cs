@@ -16,11 +16,8 @@ namespace CityCompanyCard_base.Manager
     public class UnitCardManager:ICardManager
     {
         public override bool PlayCard(ICard res, IEventObject eventObject)
-
         {
-            //beforePlay
-            eventObject.resZone![0].cardList.Remove(res);
-            eventObject.targetZone![0].cardList.Add(res);
+            ZoneManager.moveCardToBattleGround(eventObject.targetBattleGround![0], res, eventObject.targetZone![0]);
             res.OnPlay(eventObject);
             return true;
         }

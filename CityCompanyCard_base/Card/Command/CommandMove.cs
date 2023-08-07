@@ -52,7 +52,7 @@ namespace CityCompanyCard_base.Card.Command
                 //选择该格子上的生物(如果有的话)
                 //获取棋盘
                 player.actionPoint.reduceValue(1);
-                flag = new Selector_OneUnit().startISeletor(ev) && new Selector_OneZone().startISeletor(ev);
+                flag = new Selector_ResUnit().startISeletor(ev) && new Selector_targetZone().startISeletor(ev);
                 if (flag) {
                     ZoneManager.moveCardsToZone(ev.resZone[0], ev.targetZone[0], ev.resCard[0]);
                 }

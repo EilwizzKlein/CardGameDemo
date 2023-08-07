@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface
 {
-    internal class IFlitter
+    public abstract class IFliter<T>
     {
+        public abstract List<T> runFliter(IEventObject ev);
     }
 }

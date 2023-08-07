@@ -16,7 +16,7 @@ namespace CityCompanyCard_test.unitTest
         public static void start() {
             //创建一张卡给主要玩家
             IPlayer player = ApplicationContext.Instance.GetMainPlayer()!;
-            ZoneManager.moveCardsToZone(player.deck, player.hand, 1);
+            ZoneManager.drawCardsToZone(player.deck, player.hand, 1);
             IUnitCard unitCard = (IUnitCard)player.hand.cardList[0];
             //打印此卡的攻击力
             Console.WriteLine(unitCard.attack.getCurrent());
