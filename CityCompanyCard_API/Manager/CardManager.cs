@@ -30,9 +30,5 @@ namespace CityCompanyCard_API.Manager
             this.managerList.Add(cardType, cardManager);
             return true;
         }
-        public static ICard generateRenderCard(ICard card, Type renderType) {
-            
-            return card.Clone();
-        }
     }
 }

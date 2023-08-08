@@ -11,7 +11,7 @@ namespace CityCompanyCard_base.Card.Command
     public class CommandDefence:ICommandCard
     {
         public CommandDefence() {
-            name = "防御";
+            this.originCardBO.name = "防御";
             id = "command_defence"; //保证ID唯一 不和其他卡重复
         }
     }

@@ -26,7 +26,7 @@ namespace CityCompanyCard_base.Fliter
                List<ICard> battleground = AppUtils.getMainBattleGround().CardList;
                 for (int i =0; i < battleground.Count; i++)
                 {
-                    if (battleground[i].controller == player) {
+                    if (battleground[i].renderCardBO.controller == player) {
                         if (!zones.Contains(battleground[i].GetZone()))
                         {
                             zones.Add((T)battleground[i].GetZone());

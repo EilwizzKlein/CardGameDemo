@@ -1,5 +1,7 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.Interface.BO;
+using CityCompanyCard_base.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,34 +24,15 @@ namespace CityCompanyCard_base.Buff
             this.attackValue = attackValue;
         }
 
-        public override void OnGainBuff(object target)
+        public override void OnUpdateBuff(CardBO target)
         {
-            if (target is IUnitCard)
-            {
-                IUnitCard temp = (IUnitCard)target;
-                temp.attack.addValue(attackValue);
-            }
+            
         }
 
-        private int Handle(in int value)
+        public override void renderBuff(CardBO target)
         {
-            Console.WriteLine("测试"+attackValue.ToString());
-            return value + attackValue;
-
-        }
-
-        public override void OnRemoveBuff(object target)
-        {
-            if (target is IUnitCard)
-            {
-                IUnitCard temp = (IUnitCard)target;
-                temp.attack.reduceValue(attackValue);
-            }
-        }
-
-        public override void OnUpdateBuff(object target)
-        {
-           
+            ((UnitCardBO)target).maxAttack += this.attackValue;
+            ((UnitCardBO)target).currentAttack += this.attackValue;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace CityCompanyCard_test
         {
             foreach (ICard card in cardlist)
             {
-                Console.WriteLine(card.name);
+                Console.WriteLine(card.renderCardBO.name);
             }
         }
 

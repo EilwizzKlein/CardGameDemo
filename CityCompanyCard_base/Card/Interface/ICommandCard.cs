@@ -15,7 +15,6 @@ namespace CityCompanyCard_base.Card.Interface
         public ICommandCard()
         {
             this.type = CardType.Command;
-            this.hasInstance = false;
         }
 
         public override void OnPlay(IEventObject eventObject)

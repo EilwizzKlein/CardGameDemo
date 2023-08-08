@@ -11,7 +11,7 @@ namespace CityCompanyCard_base.Card.Command
     public class CommandSpecial : ICommandCard
     {
         public CommandSpecial() {
-            name = "移动";
+            this.originCardBO.name = "特殊";
             id = "command_special"; //保证ID唯一 不和其他卡重复
         }
     }

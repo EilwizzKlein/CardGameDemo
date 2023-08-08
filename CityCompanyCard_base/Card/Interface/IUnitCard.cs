@@ -2,6 +2,7 @@
 using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.renderObject;
+using CityCompanyCard_base.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,11 @@ namespace CityCompanyCard_API.Card
     [Serializable]
     public class IUnitCard : ICard
     {
-        public renderInt attack = new renderInt();
-        public renderInt health = new renderInt();
-        public delegate int AttackDelegate(in int item);
         public IUnitCard()
         {
+            this.originCardBO = new UnitCardBO();
+            this.renderCardBO = originCardBO.clone();
             this.type = CardType.Unit;
-            this.hasInstance = true;
         }
 
         public override void OnPlay(IEventObject eventObject)
@@ -27,19 +26,17 @@ namespace CityCompanyCard_API.Card
             //打出卡牌
         }
 
-        public override ICard Clone()
-        {
-            IUnitCard card = (IUnitCard)base.Clone();
-            return card;
-        }
-
         public void InitAttack(int value)
         {
-            attack.init(value);
+            ((UnitCardBO)originCardBO).maxAttack = value;
+            ((UnitCardBO)originCardBO).currentAttack = value;
+            this.renderBuff();
         }
         public void InitHealth(int value)
         {
-            health.init(value);
+            ((UnitCardBO)originCardBO).maxHealth = value;
+            ((UnitCardBO)originCardBO).currentHealth = value;
+            this.renderBuff();
         }
 
         public override void OnAfterPlay(IEventObject eventObject)

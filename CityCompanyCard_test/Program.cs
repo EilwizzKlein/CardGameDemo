@@ -24,14 +24,14 @@ if (flag)
 
     foreach (ICard card in app.GetMainPlayer().hand.cardList)
     {
-        Console.WriteLine(card.name);
+        Console.WriteLine(card.renderCardBO.name);
     }
     TestHandle.flag = true;
 }
 //运行单元测试
-//testBuff.start();
+testBuff.start();
 //testCommand.start();
-testMoveCommand.start();
+//testMoveCommand.start();
 
 while (TestHandle.flag)
 {

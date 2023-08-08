@@ -22,7 +22,7 @@ namespace CityCompanyCard_base.Card.Command
         bool flag = false;
         public CommandMove()
         {
-            name = "移动";
+            this.originCardBO.name = "移动";
             id = "command_move"; //保证ID唯一 不和其他卡重复
         }
 

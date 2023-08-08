@@ -8,55 +8,57 @@ using CityCompanyCard_API.dictionary;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using CityCompanyCard_API.Utils;
+using CityCompanyCard_API.Interface.BO;
 
 namespace CityCompanyCard_API.Card
 {
     public abstract class ICard
     {
-        public string name = "";
+        public CardBO originCardBO = new CardBO();
+        public CardBO renderCardBO = new CardBO();
         public string id = "";
         private string UUID = Guid.NewGuid().ToString();
-        public int cost;
-        public Dictionary<string,int> exCost = new Dictionary<string,int>();
         public CardType type;
-        public List<string> subType = new List<string>();
         public IPlayer owner; //拥有者
-        public IPlayer controller; //操控者
-        public string effect; //效果文字描述
-        public Boolean hasInstance; //是否有实体
         private List<IBuff> buffs = new List<IBuff>();
         private IZone currentZone = null;
-        private ICard? raw; //原始卡实体
 
         public string getUUID() { return UUID; }
 
         public abstract void OnPlay(IEventObject eventObject);
         public abstract void OnAfterPlay(IEventObject eventObject);
         
-        public virtual ICard Clone()
+        public ICard() {
+            renderCardBO = originCardBO.clone();
+        }
+        public void Clone()
         {
             // 使用二进制序列化和反序列化实现深拷贝
-            ICard card = (ICard)this.MemberwiseClone();
-            card.subType = new List<string>(subType);
-            card.exCost = new Dictionary<string, int>(exCost);
-            card.UUID = Guid.NewGuid().ToString();
-            card.raw = this;
-            return card;
+            renderCardBO = originCardBO.clone();
         }
 
         public virtual void GainBuff(IBuff buff)
         {
-            buff.OnGainBuff(this);
             buffs.Add(buff);
+            renderBuff();
         }
 
         public virtual void RemoveBuff(IBuff buff)
         {
             if (buffs.Contains(buff))
             {
-                buff.OnRemoveBuff(this);
                 buffs.Remove(buff);
+                renderBuff();
             }
+        }
+
+        public void renderBuff()
+        {
+            renderCardBO = originCardBO.clone();
+            buffs.ForEach(buff =>
+            {
+                buff.renderBuff(renderCardBO);
+            });
         }
 
         public void setZone(IZone zone)

@@ -30,7 +30,7 @@ namespace CityCompanyCard_test.unitTest
             {
                 IUnitCard test = new Unit_Demo();
                 test.setZone(player.hand);
-                test.controller = player;
+                test.originCardBO.controller = player;
                 player.hand.cardList.Add(test);
             }
 
