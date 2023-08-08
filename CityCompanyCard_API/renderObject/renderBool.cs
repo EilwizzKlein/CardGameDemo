@@ -9,7 +9,7 @@ namespace CityCompanyCard_API.BO
     /// <summary>
     /// 渲染的布尔值,propose为目的,如果有目的,并且目的中的所有值都为正,返回和原有值相反的布尔值,否则返回原始值
     /// </summary>
-    public class renderBool
+    public class RenderBool
     {
         private Dictionary<string, int> _propose = new Dictionary<string, int>();
 
