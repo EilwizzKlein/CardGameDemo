@@ -22,8 +22,8 @@ namespace CityCompanyCard_base.Selector
             {
                 IZone tile = AppUtils.getMainBattleGroundTiles(index);
                 IUnitCard unitCard = (IUnitCard)tile.cardList[0];
-                ev.resZone = new IZone[] { tile };
-                ev.resCard = new ICard[] { unitCard };
+                ev.resZone =  tile ;
+                ev.resCard = unitCard ;
                 return true;
             }
             else

@@ -1,5 +1,6 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.dictionary;
+using CityCompanyCard_API.Factory;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.Dictionary;
 using CityCompanyCard_base.Factory;
@@ -22,9 +23,9 @@ namespace CityCompanyCard_base.Mode
             //设置主要战场
             app.BattleZone.Add(BattlegroundConst.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattlegroundConst.MAIN_BATTLE_GROUND));
             //注册卡牌管理器
-            app.cardManager = new CityCompanyCard_API.Manager.CardManager();
-            app.cardManager.registManagerList(CardType.Unit, new UnitCardManager());
-            app.cardManager.registManagerList(CardType.Command, new CommandCardManager());
+            app.cardManagerFactory = new CardManagerFactory();
+            app.cardManagerFactory.registManagerList(CardType.Unit, new UnitCardManager());
+            app.cardManagerFactory.registManagerList(CardType.Command, new CommandCardManager());
             return true;
         }
     }

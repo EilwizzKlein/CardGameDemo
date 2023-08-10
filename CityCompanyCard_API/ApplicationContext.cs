@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_API.Interface;
+﻿using CityCompanyCard_API.Factory;
+using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Manager;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace CityCompanyCard_API
         public Boolean isInit = false; //是否完成初始化
         private  IMode? _mode = null; //模式对象
         public Thread SelectorThread = null;
-        public CardManager cardManager = null; 
+        public CardManagerFactory? cardManagerFactory; //卡牌管理器工厂 为空避免写加载的时候忘了配置cmf
 
         public  void  SetMode(IMode mode) {
             _mode = mode;
@@ -43,7 +44,7 @@ namespace CityCompanyCard_API
             if (_mainPlayer == null) {
                 throw new Exception("初始化未赋值主玩家");
             }
-            if (cardManager == null) {
+            if (cardManagerFactory == null) {
                 throw new Exception("初始化未赋值卡牌管理器");
             }
             return flag;

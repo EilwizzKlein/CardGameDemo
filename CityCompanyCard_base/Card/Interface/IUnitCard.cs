@@ -1,7 +1,6 @@
-﻿using CityCompanyCard_API.BO;
-using CityCompanyCard_API.dictionary;
+﻿using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.renderObject;
+using CityCompanyCard_API.RenderObject;
 using CityCompanyCard_base.BO;
 using System;
 using System.Collections.Generic;

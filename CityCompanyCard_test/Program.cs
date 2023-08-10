@@ -29,9 +29,9 @@ if (flag)
     TestHandle.flag = true;
 }
 //运行单元测试
-testBuff.start();
+//testBuff.start();
 //testCommand.start();
-//testMoveCommand.start();
+testMoveCommand.start();
 
 while (TestHandle.flag)
 {

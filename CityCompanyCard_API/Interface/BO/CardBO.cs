@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface.BO
 {
-    public class CardBO
+    public class CardBO:IBO<CardBO>
     {
         public string name = "";
         public int cost;

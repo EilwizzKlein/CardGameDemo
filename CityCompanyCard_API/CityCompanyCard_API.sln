@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityCompanyCard_mod", "..\CityCompanyCard_mod\CityCompanyCard_mod.csproj", "{C71E2615-D030-40C9-9C0A-4CD04E4CA369}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{27506C4F-63CC-454E-ADD8-D7C3EB4D428B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27506C4F-63CC-454E-ADD8-D7C3EB4D428B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27506C4F-63CC-454E-ADD8-D7C3EB4D428B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71E2615-D030-40C9-9C0A-4CD04E4CA369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71E2615-D030-40C9-9C0A-4CD04E4CA369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71E2615-D030-40C9-9C0A-4CD04E4CA369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71E2615-D030-40C9-9C0A-4CD04E4CA369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

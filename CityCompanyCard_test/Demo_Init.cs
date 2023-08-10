@@ -20,7 +20,7 @@ namespace CityCompanyCard_test
             IMode modeBO = ModeFactory.GetModeByType(ModeFactory.NORMAL_MODE);
             //创建主要玩家
             MainPlayer mainplayer = new MainPlayer();
-            mainplayer.Name = "Test";
+            mainplayer.name = "Test";
             for (int i = 0; i < 20; i++)
             {
                 mainplayer.deck.cardList.Add(new Unit_Demo());

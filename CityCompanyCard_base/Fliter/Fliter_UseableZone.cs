@@ -20,7 +20,7 @@ namespace CityCompanyCard_base.Fliter
             //获取玩家
             if(ev.resPlayer != null)
             {
-                IPlayer player = ev.resPlayer[0];
+                IPlayer player = ev.resPlayer;
                 List<T> zones = new List<T>();
                 //获取当前战场上所有格子
                List<ICard> battleground = AppUtils.getMainBattleGround().CardList;

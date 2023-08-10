@@ -83,11 +83,11 @@ namespace CityCompanyCard_test
             {
                 //构建EventObject;
                 IEventObject eventObject = new IEventObject();
-                eventObject.resCard = new ICard[] { card };
+                eventObject.resCard =  card;
                 int index = int.Parse(command[1]);
                 eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[index] };
-                eventObject.resZone = new IZone[] { player.hand };
-                ApplicationContext.Instance.cardManager.playCard(card, eventObject);
+                eventObject.resZone = player.hand ;
+                PlayerManager.playCard(eventObject);
             }
         }
 

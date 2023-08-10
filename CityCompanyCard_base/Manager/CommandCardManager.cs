@@ -15,8 +15,9 @@ namespace CityCompanyCard_base.Manager
 {
     public class CommandCardManager : ICardManager
     {
-        public override bool PlayCard(ICard res, IEventObject eventObject)
+        public override bool PlayCard( IEventObject eventObject)
         {
+            ICard res = eventObject.resCard;
             EventObject_PlayCommandCard playCommandCard = (EventObject_PlayCommandCard)eventObject;
             ((MainPlayer)playCommandCard.res).command.chooseCommand((ICommandCard)res);
              res.OnPlay(eventObject);

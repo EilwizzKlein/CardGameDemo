@@ -9,3 +9,5 @@
 /CityCompanyCard_base/bin/
 /CityCompanyCard_API/bin/
 /CityCompanyCard_test/bin/
+/CityCompanyCard_mod/obj
+/CityCompanyCard_mod/bin/Debug/net6.0

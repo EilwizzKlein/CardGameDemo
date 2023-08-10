@@ -39,7 +39,7 @@ namespace CityCompanyCard_base.Card.Command
             //获取玩家的行动点
             EventObject_PlayCommandCard ev = (EventObject_PlayCommandCard)eventObject;
             MainPlayer player = (MainPlayer)ev.res;
-            int actionPoint = player.actionPoint.getCurrent();
+            int actionPoint = player.actionPoint;
             //选择一个单位执行移动
             //开启一个选择进程
             if (actionPoint <= 0)
@@ -51,10 +51,10 @@ namespace CityCompanyCard_base.Card.Command
             {
                 //选择该格子上的生物(如果有的话)
                 //获取棋盘
-                player.actionPoint.reduceValue(1);
+                actionPoint--;
                 flag = new Selector_ResUnit().startISeletor(ev) && new Selector_targetZone().startISeletor(ev);
                 if (flag) {
-                    ZoneManager.moveCardsToZone(ev.resZone[0], ev.targetZone[0], ev.resCard[0]);
+                    ZoneManager.moveCardsToZone(ev.resZone, ev.targetZone[0], ev.resCard);
                 }
             }
             if (flag)

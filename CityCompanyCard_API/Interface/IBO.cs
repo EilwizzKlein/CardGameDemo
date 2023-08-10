@@ -1,4 +1,4 @@
-﻿using CityCompanyCard_API.Card;
+﻿using CityCompanyCard_API.Interface.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface
 {
-    public abstract class ICardManager
+    public interface IBO<T>
     {
-        public abstract Boolean PlayCard(IEventObject eventObject);
+        public abstract T clone();
     }
 }

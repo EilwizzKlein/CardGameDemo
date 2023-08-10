@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_API.BO
+namespace CityCompanyCard_API.RenderObject
 {
     /// <summary>
     /// 渲染的布尔值,propose为目的,如果有目的,并且目的中的所有值都为正,返回和原有值相反的布尔值,否则返回原始值

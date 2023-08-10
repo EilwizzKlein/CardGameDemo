@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using CityCompanyCard_API.Utils;
 using CityCompanyCard_API.Interface.BO;
+using CityCompanyCard_API.Interface.Instance;
 
 namespace CityCompanyCard_API.Card
 {
@@ -22,7 +23,7 @@ namespace CityCompanyCard_API.Card
         public IPlayer owner; //拥有者
         private List<IBuff> buffs = new List<IBuff>();
         private IZone currentZone = null;
-
+        private AttachmentZone attachmentZone = new AttachmentZone();
         public string getUUID() { return UUID; }
 
         public abstract void OnPlay(IEventObject eventObject);
