@@ -1,4 +1,5 @@
 ﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Interface.Instance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface
 {
+    class IBattleGroundZone : IZone
+    {
+      
+    }
     public class IBattleGround
     {
         public string name = "";
         public int width;
         public int height;
-        public IZone[]? battleGrounds;
+        public BattleGroundTileZone[]? battleGrounds;
         public List<ICard> CardList = new List<ICard>();
 
         public void Init()
@@ -20,12 +25,12 @@ namespace CityCompanyCard_API.Interface
             if (width > 0 && height > 0)
             {
                 // 初始化一维数组
-                battleGrounds = new IZone[width * height];
+                battleGrounds = new BattleGroundTileZone[width * height];
 
                 // 批量赋值每个数组元素
                 for (int i = 0; i < battleGrounds.Length; i++)
                 {
-                    battleGrounds[i] = new IZone();
+                    battleGrounds[i] = new BattleGroundTileZone(i,this);
                 }
             }
             else

@@ -9,23 +9,42 @@ namespace CityCompanyCard_API.Interface
     /// <summary>
     /// 目标选择器抽象类
     /// </summary>
-    public abstract class ISelector
+    public abstract class ISelector<T>
     {
-        public abstract Boolean handleSelector(in IEventObject ev);
+
+        public abstract T[] onFliter(IEventObject ev);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <param name="output"></param>
+        /// <returns>true-选中了 false-取消了</returns>
+        public abstract void renderSeletor(IEventObject ev, T[] filter);
+
+        public abstract void hideSelector();
+        public abstract void showSelector();
+
+        public abstract Boolean onSelector(IEventObject ev, T[] filter,out T[] output);
+
 
         /// <summary>
         /// 进行选择
         /// </summary>
         /// <param name="ev"></param>
         /// <returns>ture 完成筛选 false 失败</returns>
-        public Boolean startISeletor(IEventObject ev)
+        public Boolean startISeletor(IEventObject ev, out T[] output)
         {
             Boolean isSucess = false;
+            T[] selectOutput = null;
             ApplicationContext.Instance.SelectorThread = new Thread(() =>
             {
+                T[] filter = onFliter(ev);
                 // 子线程的逻辑，这里以计算值为例
-                isSucess = handleSelector(in ev);
+                renderSeletor(ev, filter);
+                isSucess = onSelector(ev, filter, out selectOutput);
             });
+            output = selectOutput;
             ApplicationContext.Instance.SelectorThread.Start();
             ApplicationContext.Instance.SelectorThread.Join();
             return isSucess;

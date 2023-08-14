@@ -18,6 +18,7 @@ namespace CityCompanyCard_base.Manager
         public override bool PlayCard( IEventObject eventObject)
         {
             ICard res = eventObject.resCard;
+            res.controller = eventObject.resPlayer;
             ZoneManager.moveCardToBattleGround(eventObject.targetBattleGround![0], res, eventObject.targetZone![0]);
             res.OnPlay(eventObject);
             return true;

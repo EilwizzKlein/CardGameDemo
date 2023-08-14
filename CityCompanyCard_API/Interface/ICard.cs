@@ -21,6 +21,7 @@ namespace CityCompanyCard_API.Card
         private string UUID = Guid.NewGuid().ToString();
         public CardType type;
         public IPlayer owner; //拥有者
+        public IPlayer controller; //操控者
         private List<IBuff> buffs = new List<IBuff>();
         private IZone currentZone = null;
         private AttachmentZone attachmentZone = new AttachmentZone();

@@ -52,10 +52,16 @@ namespace CityCompanyCard_base.Card.Command
                 //选择该格子上的生物(如果有的话)
                 //获取棋盘
                 actionPoint--;
-                flag = new Selector_ResUnit().startISeletor(ev) && new Selector_targetZone().startISeletor(ev);
-                if (flag) {
-                    ZoneManager.moveCardsToZone(ev.resZone, ev.targetZone[0], ev.resCard);
-                }
+
+                //获取生物
+                flag = new Selector_ResUnit<IUnitCard>().startISeletor(ev,out IUnitCard[] output);
+                // TODO:获取该生物可以移动的格子
+
+
+
+                //if (flag) {
+                //    ZoneManager.moveCardsToZone(ev.resZone, ev.targetZone[0], ev.resCard);
+                //}
             }
             if (flag)
             {

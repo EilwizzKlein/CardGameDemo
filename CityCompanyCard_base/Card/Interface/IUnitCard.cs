@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Card
 {
-    [Serializable]
     public class IUnitCard : ICard
     {
         public IUnitCard()

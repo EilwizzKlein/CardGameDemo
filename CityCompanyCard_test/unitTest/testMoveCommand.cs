@@ -8,7 +8,6 @@ using CityCompanyCard_base.Card.Unit;
 using CityCompanyCard_base.Dictionary;
 using CityCompanyCard_base.EventObject;
 using CityCompanyCard_base.Factory;
-using CityCompanyCard_base.Fliter;
 using CityCompanyCard_base.Player;
 using System;
 using System.Collections.Generic;
@@ -31,7 +30,7 @@ namespace CityCompanyCard_test.unitTest
             {
                 IUnitCard test = new Unit_Demo();
                 test.setZone(player.hand);
-                test.originCardBO.controller = player;
+                test.controller = player;
                 player.hand.cardList.Add(test);
             }
 
@@ -43,6 +42,7 @@ namespace CityCompanyCard_test.unitTest
             IZone hands = player.hand;
 
             IEventObject eventObject = new IEventObject();
+            eventObject.resPlayer = player;
             eventObject.resCard = unitCard;
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[1] };
             eventObject.resZone = hands;
@@ -81,16 +81,13 @@ namespace CityCompanyCard_test.unitTest
 
             Console.WriteLine($"玩家当前手牌数为0:${player.hand.cardList.Count}");
 
-            Fliter_HasPlayerUnitZone<IZone> fliter = new Fliter_HasPlayerUnitZone<IZone>();
 
             //构建command事件对象
             EventObject_PlayCommandCard commandEV = new EventObject_PlayCommandCard(player);
             commandEV.resCard = player.command.cardList[0];
             commandEV.resPlayer = player;
-            List<IZone> sss = fliter.runFliter(commandEV);
-            //测试
+            //测试move指令
 
-            //执行
             PlayerManager.playCard(commandEV);
         }
     }

@@ -14,7 +14,6 @@ namespace CityCompanyCard_API.Interface.BO
         public CardType type;
         public List<string> subType = new List<string>();
         public Dictionary<string, int> exCost = new Dictionary<string, int>();
-        public IPlayer controller; //操控者
         public string effect = ""; //效果文字描述
         public virtual CardBO clone()
         {
@@ -24,7 +23,6 @@ namespace CityCompanyCard_API.Interface.BO
             bo.type = type;
             bo.subType = new List<string>(subType);
             bo.exCost = new Dictionary<string, int>(exCost);
-            bo.controller = controller;
             bo.effect = new String(effect);
             return bo;
         }

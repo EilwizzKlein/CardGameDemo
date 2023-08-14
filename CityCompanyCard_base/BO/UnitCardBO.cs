@@ -17,12 +17,17 @@ namespace CityCompanyCard_base.BO
 
         public override CardBO clone()
         {
-            UnitCardBO bo = new UnitCardBO(); 
-            bo.maxHealth = maxHealth;
-            bo.currentHealth = currentHealth;
-            bo.maxAttack= maxAttack;
-            bo.currentAttack = currentAttack;
-            return bo;
+            CardBO baseBo = new UnitCardBO();
+            baseBo = base.clone();
+            if (baseBo is UnitCardBO bo) // 检查是否能将 Animal 引用转换为 Dog 对象
+            {
+                bo.maxHealth = maxHealth;
+                bo.currentHealth = currentHealth;
+                bo.maxAttack = maxAttack;
+                bo.currentAttack = currentAttack;
+                return bo;
+            }         
+            return baseBo;
         }
     }
 }
