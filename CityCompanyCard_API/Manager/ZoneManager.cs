@@ -1,5 +1,6 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.Interface.Instance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace CityCompanyCard_API.Manager
 
         }
 
-        public static Boolean moveCardToBattleGround(IBattleGround battleGround,ICard card, IZone targetZone) {
+        public static Boolean moveCardToBattleGround(IBattleGround battleGround,ICard card, BattleGroundTileZone targetZone) {
             if (!battleGround.CardList.Contains(card))
             {
                 battleGround.CardList.Add(card);
@@ -48,8 +49,6 @@ namespace CityCompanyCard_API.Manager
             card.setZone(targetZone);
             targetZone?.cardList.Add(card);
             return true;
-
-
         }
         public static Boolean removeCardToBattleGround(IBattleGround battleGround, ICard card)
         {

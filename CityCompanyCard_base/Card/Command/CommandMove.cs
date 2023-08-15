@@ -1,12 +1,13 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.EventObject;
 using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
-using CityCompanyCard_base.Selector;
+using CityCompanyCard_base.Selector.PanelSelector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace CityCompanyCard_base.Card.Command
 {
     public class CommandMove : ICommandCard
     {
-        bool flag = false;
         public CommandMove()
         {
             this.originCardBO.name = "移动";
@@ -28,14 +28,12 @@ namespace CityCompanyCard_base.Card.Command
 
         public override void OnPlay(IEventObject eventObject)
         {
-            flag = true;
-                // 子线程的逻辑，这里以计算值为例
-            OnAsyncPlay(eventObject);
+            // 子线程的逻辑，这里以计算值为例
+            while (OnAsyncPlay(eventObject)) { };
         }
 
         public bool OnAsyncPlay(IEventObject eventObject)
         {
-            bool flag = false;
             //获取玩家的行动点
             EventObject_PlayCommandCard ev = (EventObject_PlayCommandCard)eventObject;
             MainPlayer player = (MainPlayer)ev.res;
@@ -45,40 +43,43 @@ namespace CityCompanyCard_base.Card.Command
             if (actionPoint <= 0)
             {
                 Console.WriteLine("玩家体力用完了");
-                flag = true;
             }
             else
             {
-                //选择该格子上的生物(如果有的话)
-                //获取棋盘
-                actionPoint--;
-
                 //获取生物
-                flag = new Selector_ResUnit<IUnitCard>().startISeletor(ev,out IUnitCard[] output);
-                // TODO:获取该生物可以移动的格子
-
-
-
-                //if (flag) {
-                //    ZoneManager.moveCardsToZone(ev.resZone, ev.targetZone[0], ev.resCard);
-                //}
-            }
-            if (flag)
-            {
-                Console.WriteLine("输入End结束");
-                string command = Console.ReadLine();
-
-                if (command.ToUpper() == "END")
+                new Selector_ResUnit<IUnitCard>().startISeletor(ev,out IUnitCard[] outputCard);
+                if (outputCard.Length > 0)
                 {
-                    flag = false;
+                    // TODO:获取该生物可以移动的格子
+                    IUnitCard card = outputCard[0];
+                    ev.resCard = card;
+                    if (card.GetZone() is BattleGroundTileZone) { 
+                        ev.resBattleGroundTileZone = (BattleGroundTileZone)card.GetZone();
+                        ev.resBattleGround = ev.resBattleGroundTileZone.getResBattleGround();
+                    }
+                    new Selector_targetZone<BattleGroundTileZone>().startISeletor(ev, out BattleGroundTileZone[] outbattleground);
+                    ev.targetBattleGroundTileZone = outbattleground;
+                    if (outbattleground.Length > 0) {
+                        ZoneManager.moveCardToBattleGround(ev.resBattleGround,card, ev.targetBattleGroundTileZone[0]);
+                    }
                 }
                 else
                 {
-
-                OnAsyncPlay(eventObject);
+                    //移动失败
+                    Console.WriteLine("移动失败");
                 }
+              
             }
-            return flag;
+            Console.WriteLine("输入End结束");
+            string command = Console.ReadLine();
+            if (command.ToUpper() == "END")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
 
         }
 

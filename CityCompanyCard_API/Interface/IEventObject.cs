@@ -1,4 +1,5 @@
 ﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Interface.Instance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace CityCompanyCard_API.Interface
         public ICard? resCard; //来源卡
         public ICard[]? targetCard; //目标卡
         public IBattleGround? resBattleGround; //来源战场
-        public IBattleGround[]? targetBattleGround; //来源战场
+        public IBattleGround[]? targetBattleGround; //目标战场
+        public BattleGroundTileZone? resBattleGroundTileZone; //来源战场格
+        public BattleGroundTileZone[]? targetBattleGroundTileZone; //来源战场格
         public IZone? resZone; //来源区域
         public IZone[]? targetZone; //目标区域
         public IPlayer? resPlayer; //来源玩家

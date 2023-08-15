@@ -9,6 +9,8 @@ namespace CityCompanyCard_API.Interface.Instance
     public class BattleGroundTileZone:IZone
     {
         private int _index;
+        internal int _poxition_x;
+        internal int _poxition_y;
         private IBattleGround? _resBattleGround;
 
         public BattleGroundTileZone(int index, IBattleGround? resBattleGround)
@@ -17,8 +19,23 @@ namespace CityCompanyCard_API.Interface.Instance
             _resBattleGround = resBattleGround;
         }
 
-        public int getIndex (){
+        internal void setPosition(int x, int y) { 
+            this._poxition_x = x;
+            this._poxition_y = y;
+        }
+
+        public int getIndex()
+        {
             return _index;
+        }
+
+        public int getPositionX()
+        {
+            return _poxition_x;
+        }
+
+        public int getPositionY(){
+            return _poxition_y;
         }
 
         public IBattleGround getResBattleGround()

@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Interface
 {
-    class IBattleGroundZone : IZone
-    {
-      
-    }
     public class IBattleGround
     {
         public string name = "";
@@ -31,6 +27,7 @@ namespace CityCompanyCard_API.Interface
                 for (int i = 0; i < battleGrounds.Length; i++)
                 {
                     battleGrounds[i] = new BattleGroundTileZone(i,this);
+                    battleGrounds[i].setPosition(i % width, i / width);
                 }
             }
             else

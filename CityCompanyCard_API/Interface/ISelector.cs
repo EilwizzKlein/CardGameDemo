@@ -44,9 +44,9 @@ namespace CityCompanyCard_API.Interface
                 renderSeletor(ev, filter);
                 isSucess = onSelector(ev, filter, out selectOutput);
             });
-            output = selectOutput;
             ApplicationContext.Instance.SelectorThread.Start();
             ApplicationContext.Instance.SelectorThread.Join();
+            output = selectOutput;
             return isSucess;
         }
     }
