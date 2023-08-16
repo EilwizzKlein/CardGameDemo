@@ -15,6 +15,7 @@ namespace CityCompanyCard_API.Card
 {
     public abstract class ICard
     {
+        private Dictionary<string, List<IPower>> powers = new Dictionary<string, List<IPower>>();
         public CardBO originCardBO = new CardBO();
         public CardBO renderCardBO = new CardBO();
         public string id = "";
@@ -68,6 +69,25 @@ namespace CityCompanyCard_API.Card
             this.currentZone = zone;
         }
 
+        public void AddPower(string name, int uses, Action action)
+        {
+            if (!powers.ContainsKey(name))
+            {
+                powers[name] = new List<IPower>();
+            }
+
+            powers[name].Add(new IPower(name, uses, action));
+        }
+
+        public void AddPower(string name, IPower power)
+        {
+            if (!powers.ContainsKey(name))
+            {
+                powers[name] = new List<IPower>();
+            }
+
+            powers[name].Add(power);
+        }
         public IZone GetZone() { return this.currentZone; }
     }
 }
