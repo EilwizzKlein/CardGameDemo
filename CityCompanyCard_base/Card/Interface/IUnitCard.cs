@@ -12,6 +12,7 @@ namespace CityCompanyCard_API.Card
 {
     public class IUnitCard : ICard
     {
+        int actionPoint = 1;
         public IUnitCard()
         {
             this.originCardBO = new UnitCardBO();
@@ -19,10 +20,11 @@ namespace CityCompanyCard_API.Card
             this.type = CardType.Unit;
         }
 
-        public override void OnPlay(IEventObject eventObject)
+        public void OnStartPower(IEventObject eventObject)
         {
-            //打出卡牌
+
         }
+     
 
         public void InitAttack(int value)
         {
@@ -37,9 +39,22 @@ namespace CityCompanyCard_API.Card
             this.renderBuff();
         }
 
-        public override void OnAfterPlay(IEventObject eventObject)
+        public override void OnPlay(IEventObject eventObject)
         {
-            throw new NotImplementedException();
+            //打出卡牌
+        }
+
+        public override  void OnAfterPlay(IEventObject eventObject)
+        {
+        }
+
+        public override void OnBeforeDraw(IEventObject eventObject)
+        {
+           
+        }
+
+        public override void OnAfterDraw(IEventObject eventObject)
+        {
         }
     }
 }

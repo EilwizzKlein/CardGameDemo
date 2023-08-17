@@ -4,7 +4,6 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;
-using CityCompanyCard_base.EventObject;
 using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.Selector.PanelSelector;
@@ -35,8 +34,8 @@ namespace CityCompanyCard_base.Card.Command
         public bool OnAsyncPlay(IEventObject eventObject)
         {
             //获取玩家的行动点
-            EventObject_PlayCommandCard ev = (EventObject_PlayCommandCard)eventObject;
-            MainPlayer player = (MainPlayer)ev.res;
+            IEventObject ev =eventObject;
+            MainPlayer player = (MainPlayer)ev.resPlayer!;
             int actionPoint = player.actionPoint;
             //选择一个单位执行移动
             //开启一个选择进程

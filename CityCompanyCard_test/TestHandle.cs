@@ -3,7 +3,6 @@ using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Manager;
-using CityCompanyCard_base.EventObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +34,10 @@ namespace CityCompanyCard_test
                     flag = false;
                     break;
                 case "DRAW":
-                    ZoneManager.drawCardsToZone(player.deck, player.hand, 1);
+                    //构造eventObject
+                    IEventObject eventObject = new IEventObject();
+                    eventObject.resPlayer = player;
+                    EventHandlerManager.DrawCard(eventObject);
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);

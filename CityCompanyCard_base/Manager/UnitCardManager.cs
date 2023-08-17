@@ -4,7 +4,6 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.BattleGround;
-using CityCompanyCard_base.EventObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;

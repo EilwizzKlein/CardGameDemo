@@ -25,5 +25,13 @@ namespace CityCompanyCard_base.Card.Interface
         public override void OnAfterPlay(IEventObject eventObject)
         {
         }
+
+        public override void OnBeforeDraw(IEventObject eventObject)
+        {
+        }
+
+        public override void OnAfterDraw(IEventObject eventObject)
+        {
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.Dictionary;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,12 @@ namespace CityCompanyCard_base.Card.Unit
             this.originCardBO.subType.Add(CardConst.unitSubtype.HUMAN); //子类别,一般在Subtype中找
             //this.exCost.Add(CardConst.exCostType.FOOD, 1); //额外费用
             this.originCardBO.effect = "测试"; //效果文本
+        }
+
+        public override void OnAfterDraw(IEventObject eventObject)
+        {
+            base.OnAfterDraw(eventObject);
+            Console.WriteLine("你抽到了我,现在我要鲨了你");
         }
     }
 }

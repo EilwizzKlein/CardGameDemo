@@ -15,5 +15,6 @@ namespace CityCompanyCard_API.Manager
     public class CardManager
     {
         public void gainAttachment(ICard res, IEventObject eventObject) { }
+        public void createCardToZone(ICard res, IEventObject eventObject) { }
     }
 }

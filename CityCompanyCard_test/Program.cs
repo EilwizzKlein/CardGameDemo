@@ -13,7 +13,6 @@ using CityCompanyCard_test.unitTest;
 //测试1 - 初始化测试
 Demo_Init di = new Demo_Init();
 Console.WriteLine("开始初始化测试");
-Console.WriteLine((6 / 5).ToString());
 Boolean flag = di.Init();
 if (flag)
 {
@@ -32,7 +31,7 @@ if (flag)
 //运行单元测试
 //testBuff.start();
 //testCommand.start();
-testMoveCommand.start();
+//testMoveCommand.start();
 
 while (TestHandle.flag)
 {

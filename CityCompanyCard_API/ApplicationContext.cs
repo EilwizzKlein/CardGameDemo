@@ -17,6 +17,7 @@ namespace CityCompanyCard_API
         private  IPlayer? _mainPlayer;
         public List<IPlayer> Player = new List<IPlayer>();
         public Dictionary<string,IBattleGround> BattleZone = new Dictionary<string, IBattleGround>(); //战场元素
+        public Dictionary<string, ITrigger> Trigger = new Dictionary<string, ITrigger>(); //触发器组
         public Boolean isInit = false; //是否完成初始化
         private  IMode? _mode = null; //模式对象
         public Thread SelectorThread = null;

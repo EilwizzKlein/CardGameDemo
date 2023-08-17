@@ -30,5 +30,6 @@ namespace CityCompanyCard_API.Interface
                 }
             }
         }
+
     }
 }

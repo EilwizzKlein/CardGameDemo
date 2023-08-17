@@ -27,10 +27,12 @@ namespace CityCompanyCard_API.Card
         private IZone currentZone = null;
         private AttachmentZone attachmentZone = new AttachmentZone();
         public string getUUID() { return UUID; }
-
         public abstract void OnPlay(IEventObject eventObject);
         public abstract void OnAfterPlay(IEventObject eventObject);
-        
+        public abstract void OnBeforeDraw(IEventObject eventObject);
+        public abstract void OnAfterDraw(IEventObject eventObject);
+
+
         public ICard() {
             renderCardBO = originCardBO.clone();
         }

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\CityCompanyCard_API\CityCompanyCard_API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EventObject\" />
+  </ItemGroup>
+
 </Project>

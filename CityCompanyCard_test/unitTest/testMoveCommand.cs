@@ -6,7 +6,6 @@ using CityCompanyCard_base.Card.Command;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.Card.Unit;
 using CityCompanyCard_base.Dictionary;
-using CityCompanyCard_base.EventObject;
 using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
 using System;
@@ -83,7 +82,7 @@ namespace CityCompanyCard_test.unitTest
 
 
             //构建command事件对象
-            EventObject_PlayCommandCard commandEV = new EventObject_PlayCommandCard(player);
+            IEventObject commandEV = new IEventObject();
             commandEV.resCard = player.command.cardList[0];
             commandEV.resPlayer = player;
             //测试move指令
