@@ -24,24 +24,25 @@ namespace CityCompanyCard_base.Selector.PanelSelector
         }
 
 
-        public override bool onSelector(IEventObject ev, T[] filter, out T[] output)
+        public override bool onSelector(IEventObject ev, T[] filter, out T[]? output)
         {
             string command = Console.ReadLine().ToUpper();
+            output = null;
             if (command == "H")
             {
                 hideSelector();
-                return onSelector(ev, filter, out output);
+                return false;
             }
             if (command == "S")
             {
                 showSelector();
-                return onSelector(ev, filter, out output);
+                return false;
             }
             if (command == "E")
             {
                 Console.WriteLine("取消选择");
-                output = new T[] { };
-                return false;
+                output = null;
+                return true;
             }
             if (command == "C")
             {
@@ -59,7 +60,6 @@ namespace CityCompanyCard_base.Selector.PanelSelector
             }
             else
             {
-                output = new T[] { };
                 return false;
             }
         }

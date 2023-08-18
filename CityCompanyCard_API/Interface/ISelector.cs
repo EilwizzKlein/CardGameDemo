@@ -42,12 +42,12 @@ namespace CityCompanyCard_API.Interface
                 T[] filter = onFliter(ev);
                 // 子线程的逻辑，这里以计算值为例
                 renderSeletor(ev, filter);
-                isSucess = onSelector(ev, filter, out selectOutput);
+                while (!onSelector(ev, filter, out selectOutput)) { }
             });
             ApplicationContext.Instance.SelectorThread.Start();
             ApplicationContext.Instance.SelectorThread.Join();
             output = selectOutput;
-            return isSucess;
+            return output is null;
         }
     }
 }
