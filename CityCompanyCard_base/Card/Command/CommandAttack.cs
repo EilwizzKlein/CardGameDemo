@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_base.Card.Interface;
+﻿using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.Card.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace CityCompanyCard_base.Card.Command
         public CommandAttack() {
             this.originCardBO.name = "攻击";
             id = "command_attack"; //保证ID唯一 不和其他卡重复
+        }
+
+        public override bool OnAsyncPlay(IEventObject eventObject)
+        {
+            return true;
         }
     }
 }

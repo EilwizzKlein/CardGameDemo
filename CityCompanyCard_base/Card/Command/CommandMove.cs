@@ -4,7 +4,6 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;
-using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.Selector.PanelSelector;
 using System;
@@ -25,13 +24,7 @@ namespace CityCompanyCard_base.Card.Command
             id = "command_move"; //保证ID唯一 不和其他卡重复
         }
 
-        public override void OnPlay(IEventObject eventObject)
-        {
-            // 子线程的逻辑，这里以计算值为例
-            while (OnAsyncPlay(eventObject)) { };
-        }
-
-        public bool OnAsyncPlay(IEventObject eventObject)
+        public override bool OnAsyncPlay(IEventObject eventObject)
         {
             //获取玩家的行动点
             IEventObject ev =eventObject;
@@ -46,7 +39,7 @@ namespace CityCompanyCard_base.Card.Command
             else
             {
                 //获取生物
-                new Selector_ResUnit<IUnitCard>().startISeletor(ev,out IUnitCard[] outputCard);
+                new Selector_ResUnitFactory().get_GetCanMoveUnitFilter().startISeletor(ev,out IUnitCard[] outputCard);
                 if (outputCard.Length > 0)
                 {
                     // TODO:获取该生物可以移动的格子

@@ -1,5 +1,4 @@
 ﻿using CityCompanyCard_API.Interface;
-using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Dictionary;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_base.Factory
+namespace CityCompanyCard_base.BattleGround
 {
     public class BattleGroundFactory
     {

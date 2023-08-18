@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.Card.Interface
 {
-    public class ICommandCard:ICard
+    public abstract class ICommandCard:ICard
     {
 
         public ICommandCard()
@@ -17,10 +17,16 @@ namespace CityCompanyCard_base.Card.Interface
             this.type = CardType.Command;
         }
 
+        public abstract bool OnAsyncPlay(IEventObject eventObject);
+
         public override void OnPlay(IEventObject eventObject)
         {
+            while (OnAsyncPlay(eventObject)) { };
         }
 
+        public override void OnBeforePlay(IEventObject eventObject)
+        {
+        }
 
         public override void OnAfterPlay(IEventObject eventObject)
         {

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CityCompanyCard_base\CityCompanyCard_base.csproj" />
+  </ItemGroup>
+
 </Project>

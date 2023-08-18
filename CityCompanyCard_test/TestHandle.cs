@@ -10,7 +10,6 @@ using System.Numerics;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using CityCompanyCard_base.Factory;
 using CityCompanyCard_base.Dictionary;
 
 namespace CityCompanyCard_test

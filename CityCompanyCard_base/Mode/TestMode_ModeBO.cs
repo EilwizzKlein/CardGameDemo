@@ -13,13 +13,15 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.Mode
 {
-    public class NormalMode_ModeBO : IMode
+    public class TestMode_ModeBO : IMode
     {
+        //注入渲染器
+       
         public override bool InitApp()
         {
             ApplicationContext app = ApplicationContext.Instance;
+            Console.WriteLine("欢迎进入测试模式");
             //添加玩家
-
             //设置主要战场
             app.BattleZone.Add(BattlegroundConst.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattlegroundConst.MAIN_BATTLE_GROUND));
             //注册卡牌管理器

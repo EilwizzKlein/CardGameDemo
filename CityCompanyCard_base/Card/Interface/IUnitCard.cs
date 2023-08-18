@@ -56,5 +56,9 @@ namespace CityCompanyCard_API.Card
         public override void OnAfterDraw(IEventObject eventObject)
         {
         }
+
+        public override void OnBeforePlay(IEventObject eventObject)
+        {
+        }
     }
 }

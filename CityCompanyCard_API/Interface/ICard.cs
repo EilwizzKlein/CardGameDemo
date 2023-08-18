@@ -10,6 +10,8 @@ using System.Runtime.Serialization;
 using CityCompanyCard_API.Utils;
 using CityCompanyCard_API.Interface.BO;
 using CityCompanyCard_API.Interface.Instance;
+using System.Xml.Linq;
+using static CityCompanyCard_API.Interface.IPower;
 
 namespace CityCompanyCard_API.Card
 {
@@ -27,6 +29,9 @@ namespace CityCompanyCard_API.Card
         private IZone currentZone = null;
         private AttachmentZone attachmentZone = new AttachmentZone();
         public string getUUID() { return UUID; }
+
+        
+        public abstract void OnBeforePlay(IEventObject eventObject);
         public abstract void OnPlay(IEventObject eventObject);
         public abstract void OnAfterPlay(IEventObject eventObject);
         public abstract void OnBeforeDraw(IEventObject eventObject);
@@ -71,7 +76,7 @@ namespace CityCompanyCard_API.Card
             this.currentZone = zone;
         }
 
-        public void AddPower(string name, int uses, Action action)
+        public void AddPower(string name, int uses, OnAbilityAction action)
         {
             if (!powers.ContainsKey(name))
             {
@@ -89,6 +94,33 @@ namespace CityCompanyCard_API.Card
             }
 
             powers[name].Add(power);
+        }
+
+        public List<IPower> getPower(string powerKey)
+        {
+            if (powers.ContainsKey(powerKey))
+            {
+                return powers[powerKey];
+             
+            }
+            return null;
+
+        }
+
+        public int HasPower(string powerKey) {
+            if (powers.ContainsKey(powerKey)) {
+                List<IPower> powerList = powers[powerKey];
+                for(int i = 0; i < powerList.Count;i++)
+                {
+                    if (powerList[i].currentUseTime > 0) {
+                        return 1;
+                    }
+                }
+                return 0;
+
+            }
+            return -1;
+
         }
         public IZone GetZone() { return this.currentZone; }
     }

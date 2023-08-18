@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_base.Card.Interface;
+﻿using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.Card.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,17 @@ using System.Windows.Input;
 
 namespace CityCompanyCard_base.Card.Command
 {
-    public class CommandDefence:ICommandCard
+    public class CommandDefence : ICommandCard
     {
-        public CommandDefence() {
+        public CommandDefence()
+        {
             this.originCardBO.name = "防御";
             id = "command_defence"; //保证ID唯一 不和其他卡重复
+        }
+
+        public override bool OnAsyncPlay(IEventObject eventObject)
+        {
+            return true;
         }
     }
 }

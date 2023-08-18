@@ -12,10 +12,10 @@ namespace CityCompanyCard_API.Interface
         public string description;
         private int maxUseTime;
         public int currentUseTime;
-        public Action AbilityAction { get; private set; }
+        public delegate void OnAbilityAction(IEventObject ev);
+        public OnAbilityAction AbilityAction { get; private set; }
 
-
-        public IPower(string _description, int _maxUseTime, Action _action)
+        public IPower(string _description, int _maxUseTime, OnAbilityAction _action)
         {
             description = _description;
             maxUseTime = _maxUseTime;
@@ -27,11 +27,11 @@ namespace CityCompanyCard_API.Interface
         {
             currentUseTime = maxUseTime;
         }
-        public void Activate()
+        public void Activate(IEventObject ev)
         {
             if (currentUseTime > 0)
             {
-                AbilityAction();
+                AbilityAction(ev);
                 currentUseTime--;
             }
         }

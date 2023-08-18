@@ -15,11 +15,25 @@ namespace CityCompanyCard_base.Selector.PanelSelector
     public class Selector_ResUnit<T> : BasePanelSeletor<T> where T : IUnitCard
 
     {
+        public delegate List<T>? Filter(IEventObject ev);
+
+        private Filter _fliter = delegate (IEventObject ev) { return null; };
+
+        public Selector_ResUnit()
+        {
+            _fliter = delegate (IEventObject ev) { return null; };
+        }
+
+        public Selector_ResUnit(Filter fliter)
+        {
+            _fliter = fliter;
+        }
+
         public override T[] onFliter(IEventObject ev)
         {
             //搜索场上的目标玩家生物
-            List<ICard> cards = AppUtils.getMainBattleGround().CardList.Where(card => card.controller == ev.resPlayer && card.type == CardType.Unit).ToList();
-            if (cards.Count > 0)
+            List<T> cards = _fliter(ev);
+            if (cards != null && cards.Count > 0)
             {
                 return cards.OfType<T>().ToArray();
             }

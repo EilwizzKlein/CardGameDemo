@@ -12,7 +12,12 @@ namespace CityCompanyCard_base.Selector.PanelSelector
 {
     public abstract class BasePanelSeletor<T>:ISelector<T>
     {
-        public abstract void rendFliter(T filter, int index);
+        /// <summary>
+        /// 对过滤出的每个List如何渲染
+        /// </summary>
+        /// <param name="fliterItem"></param>
+        /// <param name="index"></param>
+        public abstract void rendFliter(T fliterItem, int index);
         public override void showSelector()
         {
             Console.WriteLine("面板显示了,输入H隐藏");

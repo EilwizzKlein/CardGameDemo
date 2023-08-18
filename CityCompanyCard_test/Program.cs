@@ -31,7 +31,8 @@ if (flag)
 //运行单元测试
 //testBuff.start();
 //testCommand.start();
-testMoveCommand.start();
+//testMoveCommand.start();
+testGather.start();
 
 while (TestHandle.flag)
 {

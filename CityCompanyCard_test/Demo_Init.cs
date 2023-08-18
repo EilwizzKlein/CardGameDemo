@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_base.Factory;
+using CityCompanyCard_base.Mode;
 
 namespace CityCompanyCard_test
 {
@@ -17,7 +17,7 @@ namespace CityCompanyCard_test
         public Boolean Init()
         {
             ApplicationContext app = ApplicationContext.Instance;
-            IMode modeBO = ModeFactory.GetModeByType(ModeFactory.NORMAL_MODE);
+            IMode modeBO = ModeFactory.GetModeByType(ModeFactory.TEST_MODE);
             //创建主要玩家
             MainPlayer mainplayer = new MainPlayer();
             mainplayer.name = "Test";
