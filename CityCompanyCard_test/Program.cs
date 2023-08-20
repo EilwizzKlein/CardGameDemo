@@ -22,7 +22,7 @@ if (flag)
         Console.WriteLine(key);
     }
 
-    foreach (ICard card in app.GetMainPlayer().hand.cardList)
+    foreach (ICard card in app.GetCurrentPlayer().hand.cardList)
     {
         Console.WriteLine(card.renderCardBO.name);
     }

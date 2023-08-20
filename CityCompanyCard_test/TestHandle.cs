@@ -26,7 +26,7 @@ namespace CityCompanyCard_test
             {
                 commandBody = command.Split("-")[1].ToUpper();
             }
-            IPlayer player = ApplicationContext.Instance.GetMainPlayer()!;
+            IPlayer player = ApplicationContext.Instance.GetCurrentPlayer()!;
             switch (commandHead)
             {
                 case "Q":
@@ -34,9 +34,7 @@ namespace CityCompanyCard_test
                     break;
                 case "DRAW":
                     //构造eventObject
-                    IEventObject eventObject = new IEventObject();
-                    eventObject.resPlayer = player;
-                    EventHandlerManager.DrawCard(eventObject);
+                 
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);
@@ -77,7 +75,7 @@ namespace CityCompanyCard_test
 
         public static void PlayHandle(string body)
         {
-            IPlayer player = ApplicationContext.Instance.GetMainPlayer()!;
+            IPlayer player = ApplicationContext.Instance.GetCurrentPlayer()!;
             string[] command = body.Split('|');
             ICard card = player.hand.cardList[Int16.Parse(command[0])];
             if (card is IUnitCard && command.Length >= 2)

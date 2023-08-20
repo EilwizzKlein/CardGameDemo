@@ -16,7 +16,7 @@ namespace CityCompanyCard_test.unitTest
         public static void start()
         {
             //给主要玩家的指令卡堆添加5个基本指令
-            MainPlayer player = (MainPlayer)ApplicationContext.Instance.GetMainPlayer();
+            MainPlayer player = (MainPlayer)ApplicationContext.Instance.GetCurrentPlayer();
             player.command.AddCommand(new CommandMove());
             player.command.AddCommand(new CommandAttack());
             player.command.AddCommand(new CommandDefence());

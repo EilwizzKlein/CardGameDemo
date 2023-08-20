@@ -12,8 +12,4 @@
     <ProjectReference Include="..\CityCompanyCard_mod\CityCompanyCard_mod.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FullTest\Mode\" />
-  </ItemGroup>
-
 </Project>

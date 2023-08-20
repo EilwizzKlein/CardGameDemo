@@ -31,7 +31,7 @@ namespace CityCompanyCard_test
             }
             mainplayer.deck.sufferZone();
             app.SetMode(modeBO);
-            app.SetMainPlayer(mainplayer);
+            app.RegisterPlayer(mainplayer);
             return app.Init();
         }
     }

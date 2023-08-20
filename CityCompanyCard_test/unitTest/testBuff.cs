@@ -16,7 +16,7 @@ namespace CityCompanyCard_test.unitTest
     {
         public static void start() {
             //创建一张卡给主要玩家
-            IPlayer player = ApplicationContext.Instance.GetMainPlayer()!;
+            IPlayer player = ApplicationContext.Instance.GetCurrentPlayer()!;
            //创建事件对象
            IEventObject ev = new IEventObject();
             ev.resPlayer = player;
