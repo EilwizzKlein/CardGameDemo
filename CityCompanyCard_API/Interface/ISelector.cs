@@ -12,7 +12,7 @@ namespace CityCompanyCard_API.Interface
     public abstract class ISelector<T>
     {
 
-        public abstract T[] onFliter(IEventObject ev);
+        public abstract T[] onFilter(IEventObject ev);
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace CityCompanyCard_API.Interface
             T[] selectOutput = null;
             ApplicationContext.Instance.SelectorThread = new Thread(() =>
             {
-                T[] filter = onFliter(ev);
+                T[] filter = onFilter(ev);
                 // 子线程的逻辑，这里以计算值为例
                 renderSeletor(ev, filter);
                 while (!onSelector(ev, filter, out selectOutput)) { }
@@ -48,7 +48,7 @@ namespace CityCompanyCard_API.Interface
             ApplicationContext.Instance.SelectorThread.Start();
             ApplicationContext.Instance.SelectorThread.Join();
             output = selectOutput;
-            return output is null;
+            return output != null;
         }
     }
 }

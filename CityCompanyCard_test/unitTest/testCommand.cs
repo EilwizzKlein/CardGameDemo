@@ -17,9 +17,9 @@ namespace CityCompanyCard_test.unitTest
         {
             //给主要玩家的指令卡堆添加5个基本指令
             MainPlayer player = (MainPlayer)ApplicationContext.Instance.GetCurrentPlayer();
+            player.command.AddCommand(new CommandDefence());
             player.command.AddCommand(new CommandMove());
             player.command.AddCommand(new CommandAttack());
-            player.command.AddCommand(new CommandDefence());
             player.command.AddCommand(new CommandGather());
             player.command.AddCommand(new CommandSpecial());
             Console.WriteLine("看看玩家的指令卡的数量(未使用,使用,已使用)");

@@ -8,16 +8,15 @@
 
   <ItemGroup>
     <Compile Remove="EventObject\**" />
+    <Compile Remove="Interface\**" />
     <EmbeddedResource Remove="EventObject\**" />
+    <EmbeddedResource Remove="Interface\**" />
     <None Remove="EventObject\**" />
+    <None Remove="Interface\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CityCompanyCard_API\CityCompanyCard_API.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interface\" />
   </ItemGroup>
 
 </Project>

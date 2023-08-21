@@ -112,7 +112,7 @@ namespace CityCompanyCard_API.Card
                 List<IPower> powerList = powers[powerKey];
                 for(int i = 0; i < powerList.Count;i++)
                 {
-                    if (powerList[i].currentUseTime > 0) {
+                    if (powerList[i].currentUseTime > 0 || powerList[i].currentUseTime == -1) {
                         return 1;
                     }
                 }

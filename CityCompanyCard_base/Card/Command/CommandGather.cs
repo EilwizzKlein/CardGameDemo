@@ -38,7 +38,7 @@ namespace CityCompanyCard_base.Card.Command
             else
             {
                 //获取生物
-                new Selector_ResUnitFactory().get_GetCanGatherUnitFilter().startISeletor(ev, out IUnitCard[] outputCard);
+                new Selector_ResUnitFactory().getGetCanGatherUnitFilter().startISeletor(ev, out IUnitCard[] outputCard);
                 if (outputCard.Length > 0)
                 {
                     // TODO:获取该生物可以移动的格子

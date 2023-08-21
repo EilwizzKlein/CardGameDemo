@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.Selector.PanelSelector.UnitSeletor;
 using CityCompanyCard_base.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,31 +14,35 @@ namespace CityCompanyCard_base.Selector.PanelSelector
     public class Selector_ResUnitFactory
     {
         
-        private Selector_ResUnit<IUnitCard> GetCanMoveUnitFilter = null;
-        private Selector_ResUnit<IUnitCard> GetCanGatherUnitFilter = null;
-        
-        public Selector_ResUnitFactory() {
-            GetCanMoveUnitFilter = new Selector_ResUnit<IUnitCard>(OnCanMoveUnitFilter);
-            GetCanGatherUnitFilter = new Selector_ResUnit<IUnitCard>(OnCanGatherUnitFilter);
+        private Selector_ResUnit<IUnitCard> GetCanMoveUnitFilter = new Selector_MoveUnitFilter<IUnitCard>();
+        private Selector_ResUnit<IUnitCard> GetCanGatherUnitFilter = new Selector_GatherUnitFilter<IUnitCard>();
+        private Selector_ResUnit<IUnitCard> GetCanDefenceUnitFilter = new Selector_DefenceUnitFilter<IUnitCard>();
+        private Selector_ResUnit<IUnitCard> GetCanAttackUnitFilter = new Selector_AttackUnitFilter<IUnitCard>();
+        private Selector_ResUnit<IUnitCard> GetCanSpecailUnitFilter = new Selector_SpecialUnitFilter<IUnitCard>();
+
+        public Selector_ResUnit<IUnitCard> getGetCanMoveUnitFilter()
+        {
+            return GetCanMoveUnitFilter;
         }
 
-        /// <summary>
-        /// 获取过滤能移动的物体的弹窗
-        /// </summary>
-        public  Selector_ResUnit<IUnitCard> get_GetCanMoveUnitFilter () { return GetCanMoveUnitFilter; }
-        public Selector_ResUnit<IUnitCard> get_GetCanGatherUnitFilter() { return GetCanGatherUnitFilter; }
-        
-
-        private List<IUnitCard> OnCanMoveUnitFilter(IEventObject ev)
+        public Selector_ResUnit<IUnitCard> getGetCanGatherUnitFilter()
         {
-            List<IUnitCard> cards = AppUtils.getMainBattleGround().CardList.Where(card => card.controller == ev.resPlayer && card.type == CardType.Unit).OfType<IUnitCard>().ToList();
-            return cards;
+            return GetCanGatherUnitFilter;
         }
 
-        private List<IUnitCard> OnCanGatherUnitFilter(IEventObject ev)
+        public Selector_ResUnit<IUnitCard> getGetCanDefenceUnitFilter()
         {
-            List<IUnitCard> cards = AppUtils.getMainBattleGround().CardList.Where(card => card.HasPower("收集") > 0).OfType<IUnitCard>().ToList();
-            return cards;
+            return GetCanDefenceUnitFilter;
+        }
+
+        public Selector_ResUnit<IUnitCard> getGetCanAttackUnitFilter()
+        {
+            return GetCanAttackUnitFilter;
+        }
+
+        public Selector_ResUnit<IUnitCard> getGetCanSpecailUnitFilter()
+        {
+            return GetCanSpecailUnitFilter;
         }
 
     }

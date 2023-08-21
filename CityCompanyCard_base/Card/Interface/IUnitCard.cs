@@ -2,6 +2,7 @@
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.RenderObject;
 using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Power.BasePower;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace CityCompanyCard_API.Card
     public class IUnitCard : ICard,ITarget
     {
         int actionPoint = 1;
+
         private RenderBool _canBeChosen = new RenderBool(false);
         public RenderBool canBeChosen { get => _canBeChosen; }
  
@@ -21,7 +23,15 @@ namespace CityCompanyCard_API.Card
             this.originCardBO = new UnitCardBO();
             this.renderCardBO = originCardBO.clone();
             this.type = CardType.Unit;
+            InitDefaultPower();
         }
+
+        public virtual void InitDefaultPower()
+        {
+            this.AddPower("防御", new BaseDefancePower("防御", 1));
+            this.AddPower("攻击", new BaseDefancePower("攻击", 1));
+            this.AddPower("移动", new BaseDefancePower("移动", 1));
+        } 
 
         public void OnStartPower(IEventObject eventObject)
         {

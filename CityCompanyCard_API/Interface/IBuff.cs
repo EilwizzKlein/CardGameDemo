@@ -13,9 +13,20 @@ namespace CityCompanyCard_API.Interface
     /// </summary>
     public abstract class IBuff
     {
-        public Boolean isEternal; //在转移区域时是否需要清空
-        public Boolean isTemp; //是否为临时buff
-        public int stayCount; //持续计数
+        /// <summary>
+        /// 在转移区域时是否需要清空
+        /// </summary>
+        public Boolean isEternal;
+
+        /// <summary>
+        /// 是否为临时buff
+        /// </summary>
+        public Boolean isTemp;
+
+        /// <summary>
+        /// 持续计数
+        /// </summary>
+        public int stayCount;
 
 
         public abstract void renderBuff(CardBO target);

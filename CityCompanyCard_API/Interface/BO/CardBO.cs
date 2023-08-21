@@ -13,6 +13,7 @@ namespace CityCompanyCard_API.Interface.BO
         public int cost;
         public CardType type;
         public List<string> subType = new List<string>();
+        public List<string> tag = new List<string>();
         public Dictionary<string, int> exCost = new Dictionary<string, int>();
         public string effect = ""; //效果文字描述
         public virtual CardBO clone()
@@ -22,6 +23,7 @@ namespace CityCompanyCard_API.Interface.BO
             bo.cost = cost;
             bo.type = type;
             bo.subType = new List<string>(subType);
+            bo.tag = new List<string>(subType);
             bo.exCost = new Dictionary<string, int>(exCost);
             bo.effect = new String(effect);
             return bo;

@@ -16,7 +16,7 @@ namespace CityCompanyCard_test.unitTest
             //给主要玩家的指令卡堆添加5个基本指令
             MainPlayer player = (MainPlayer)ApplicationContext.Instance.GetCurrentPlayer();
 
-            player.command.AddCommand(new CommandGather());
+            player.command.AddCommand(new CommandDefence());
             //给玩家创建5张手牌
             for (int i = 0; i <= 5; i++)
             {

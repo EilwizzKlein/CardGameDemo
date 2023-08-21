@@ -11,9 +11,10 @@ namespace CityCompanyCard_base.Selector.PanelSelector
 {
     public class Selector_PowerSelector<T> : BasePanelSeletor<T> where T : IPower
     {
-        public override T[] onFliter(IEventObject ev)
+        public override T[] onFilter(IEventObject ev)
         {
-            if (ev.resKeyValus.ContainsKey(EventObjectExtractKey.POWER_NAME)){
+            if (ev.resKeyValus.ContainsKey(EventObjectExtractKey.POWER_NAME))
+            {
                 List<IPower> powers = ev.resCard.getPower(ev.resKeyValus[EventObjectExtractKey.POWER_NAME]);
                 return (T[])powers.ToArray();
             }
@@ -21,10 +22,10 @@ namespace CityCompanyCard_base.Selector.PanelSelector
             {
                 throw new Exception("能力选择窗口未传入能力字段");
             }
-           
+
         }
 
-        public override void rendFliter(T fliterItem, int index)
+        public override void rendFilter(T fliterItem, int index)
         {
             Console.WriteLine($"{index}:{fliterItem.description}");
         }

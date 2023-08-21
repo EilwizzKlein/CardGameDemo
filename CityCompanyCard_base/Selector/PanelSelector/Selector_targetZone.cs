@@ -14,7 +14,7 @@ namespace CityCompanyCard_base.Selector.PanelSelector
 {
     public class Selector_targetZone<T> : BasePanelSeletor<T> where T : BattleGroundTileZone
     {
-        public override T[] onFliter(IEventObject ev)
+        public override T[] onFilter(IEventObject ev)
         {
             if (ev.resCard is null) { 
                 return new T[] { };
@@ -26,7 +26,7 @@ namespace CityCompanyCard_base.Selector.PanelSelector
         }
 
 
-        public override void rendFliter(T filterItem, int index)
+        public override void rendFilter(T filterItem, int index)
         {
             Console.WriteLine($"{index}:目标区域格({filterItem.getPositionX()},{filterItem.getPositionY()})");
         }

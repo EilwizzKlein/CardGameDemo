@@ -17,7 +17,7 @@ namespace CityCompanyCard_base.Selector.PanelSelector
         /// </summary>
         /// <param name="fliterItem"></param>
         /// <param name="index"></param>
-        public abstract void rendFliter(T fliterItem, int index);
+        public abstract void rendFilter(T fliterItem, int index);
         public override void showSelector()
         {
             Console.WriteLine("面板显示了,输入H隐藏");
@@ -78,7 +78,7 @@ namespace CityCompanyCard_base.Selector.PanelSelector
             {
              for(int i = 0; i < filter.Length;i++)
                 {
-                    rendFliter(filter[i], i);
+                    rendFilter(filter[i], i);
                 }
                 Console.WriteLine("请输入C后选择");
             }
