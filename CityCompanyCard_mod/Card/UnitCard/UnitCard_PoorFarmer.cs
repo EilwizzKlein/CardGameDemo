@@ -26,7 +26,10 @@ namespace CityCompanyCard_mod.Card.UnitCard
 
         private void OnAbilityAction(IEventObject ev)
         {
-            Console.WriteLine("玩家获取了1食物");
+            int baseValue = 1;
+            baseValue += ev.modify;
+            //获取修正值
+            this.controller.GainExMana(CardConst.exCostType.FOOD, baseValue);
         }
     }
 }

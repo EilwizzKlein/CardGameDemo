@@ -17,6 +17,11 @@ namespace CityCompanyCard_API.RenderObject
 
         private Boolean _renderBool = false;
 
+       public RenderBool (Boolean boolean)
+        {
+            _originBool = boolean;
+           _renderBool = boolean;
+        }
 
         public void addPropose(string propose,int value)
         {

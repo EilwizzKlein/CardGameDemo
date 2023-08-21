@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EventObject\**" />
+    <EmbeddedResource Remove="EventObject\**" />
+    <None Remove="EventObject\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CityCompanyCard_API\CityCompanyCard_API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EventObject\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
 
 </Project>

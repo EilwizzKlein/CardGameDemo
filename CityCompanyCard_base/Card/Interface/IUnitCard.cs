@@ -10,9 +10,12 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_API.Card
 {
-    public class IUnitCard : ICard
+    public class IUnitCard : ICard,ITarget
     {
         int actionPoint = 1;
+        private RenderBool _canBeChosen = new RenderBool(false);
+        public RenderBool canBeChosen { get => _canBeChosen; }
+ 
         public IUnitCard()
         {
             this.originCardBO = new UnitCardBO();
@@ -59,6 +62,11 @@ namespace CityCompanyCard_API.Card
 
         public override void OnBeforePlay(IEventObject eventObject)
         {
+        }
+
+        public virtual bool beforeChosen(IEventObject ev)
+        {
+            return true;
         }
     }
 }

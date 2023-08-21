@@ -10,33 +10,11 @@ using CityCompanyCard_test.unitTest;
 //Console.WriteLine(ApplicationContext.Instance.BattleZone);
 //Console.ReadKey();
 
+//选择完整测试
+
+
 //测试1 - 初始化测试
-Demo_Init di = new Demo_Init();
-Console.WriteLine("开始初始化测试");
-Boolean flag = di.Init();
-if (flag)
-{
-    ApplicationContext app = ApplicationContext.Instance;
-    foreach (string key in app.BattleZone.Keys)
-    {
-        Console.WriteLine(key);
-    }
 
-    foreach (ICard card in app.GetCurrentPlayer().hand.cardList)
-    {
-        Console.WriteLine(card.renderCardBO.name);
-    }
-    TestHandle.flag = true;
-}
-//运行单元测试
-//testBuff.start();
-//testCommand.start();
-//testMoveCommand.start();
-testGather.start();
-
-while (TestHandle.flag)
-{
-    string command = Console.ReadLine()!;
-    TestHandle.Handle(command);
-}
-Console.ReadKey();
+//测试2 - 单元测试
+ITest test = new Demo_Init();
+test.runTest();

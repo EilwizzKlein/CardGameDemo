@@ -22,5 +22,6 @@ namespace CityCompanyCard_API.Interface
         public IPlayer[]? targetPlayer; //目标玩家
         public Dictionary<string,string> resKeyValus = new Dictionary<string, string>(); //来源额外键值对
         public Dictionary<string, string> targetKeyValus = new Dictionary<string, string>(); //目标额外键值对
+        public int modify =0; //修正值
     }
 }

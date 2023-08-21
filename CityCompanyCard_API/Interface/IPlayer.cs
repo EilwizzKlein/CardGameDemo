@@ -34,5 +34,59 @@ namespace CityCompanyCard_API.Interface
             EventHandlerManager.DrawCard(eventObject);
         }
 
+        public virtual void PlayCard(ICard card)
+        {
+            IEventObject eventObject = new IEventObject();
+            eventObject.resPlayer = this;
+            eventObject.resCard = card;
+            PlayerManager.playCard(eventObject);
+        }
+
+        /// <summary>
+        /// 获取费用
+        /// </summary>
+        /// <param name="number">获取费用数量</param>
+        /// <param name="allowOverflow">是否允许溢出</param>
+        public virtual void GainMana(int number,Boolean allowOverflow)
+        {
+            mana += number;
+            if (mana > maxMana && !allowOverflow)
+            {
+                mana = maxMana;
+            }
+        }
+        /// <summary>
+        /// 获取费用
+        /// </summary>
+        /// <param name="number">获取费用数量</param>
+        public virtual void GainMana(int number)
+        {
+            GainMana(number, false);
+        }
+
+        public virtual void GainExMana(string exKey ,int number)
+        {
+            if (exMana.ContainsKey(exKey))
+            {
+                exMana[exKey] += number;
+            }
+            else {
+                exMana.Add(exKey, number);
+            }
+
+        }
+
+        public virtual Boolean CostExMana(string exKey, int number)
+        {
+            if (exMana.ContainsKey(exKey))
+            {
+                if(exMana[exKey] >= number)
+                {
+                    exMana[exKey]-=number;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

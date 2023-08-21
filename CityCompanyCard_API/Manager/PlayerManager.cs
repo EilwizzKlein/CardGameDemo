@@ -20,6 +20,5 @@ namespace CityCompanyCard_API.Manager
             }
             return true;
         }
-
     }
 }
