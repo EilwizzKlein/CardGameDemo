@@ -22,6 +22,7 @@ namespace CityCompanyCard_API.Interface
         public string name = "";
         public int mana;
         public int maxMana = 0;
+        public int health = 0;
         public Dictionary<string, int> exMana = new Dictionary<string, int>();
         private List<IBuff> buffs = new List<IBuff>();
         private AttachmentZone attachmentZone = new AttachmentZone();

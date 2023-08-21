@@ -35,6 +35,7 @@ namespace CityCompanyCard_API.Interface
         /// <returns>ture 完成筛选 false 失败</returns>
         public Boolean startISeletor(IEventObject ev, out T[] output)
         {
+ 
             Boolean isSucess = false;
             T[] selectOutput = null;
             ApplicationContext.Instance.SelectorThread = new Thread(() =>
