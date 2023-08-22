@@ -23,5 +23,25 @@ namespace CityCompanyCard_API.Interface
         public Dictionary<string,string> resKeyValus = new Dictionary<string, string>(); //来源额外键值对
         public Dictionary<string, string> targetKeyValus = new Dictionary<string, string>(); //目标额外键值对
         public int modify =0; //修正值
+
+        public IEventObject() { }
+
+        public IEventObject(IEventObject ev)
+        {
+            resCard = ev.resCard; //来源卡
+            targetCard = ev.targetCard;
+            resBattleGround = ev.resBattleGround;
+            targetBattleGround = ev.targetBattleGround;
+            resBattleGroundTileZone = ev.resBattleGroundTileZone;
+            targetBattleGroundTileZone = ev.targetBattleGroundTileZone;
+            resZone = ev.resZone;
+            targetZone = ev.targetZone;
+            resPlayer = ev.resPlayer;
+            targetPlayer = ev.targetPlayer;
+            resKeyValus = new Dictionary<string, string>(ev.resKeyValus);
+            targetKeyValus = new Dictionary<string, string>(ev.targetKeyValus);
+            modify = ev.modify;
+
+        }
     }
 }
