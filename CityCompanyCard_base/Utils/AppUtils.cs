@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.Dictionary;
+using CityCompanyCard_base.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CityCompanyCard_base.Utils
 {
     public class AppUtils
     {
+    private ManagerFactory managerFactory = new ManagerFactory();
         public static IZone getBattleGroundTiles(string key,int index)
         {
             IBattleGround battleGround;

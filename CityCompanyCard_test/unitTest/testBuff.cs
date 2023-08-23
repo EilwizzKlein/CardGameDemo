@@ -26,26 +26,26 @@ namespace CityCompanyCard_test.unitTest
             IUnitCard unitCard = (IUnitCard)player.hand.cardList[0];
             //打印此卡的攻击力
             Console.WriteLine("打印此卡的攻击力: 1 1");
-            Console.WriteLine(((UnitCardBO)unitCard.renderCardBO).currentAttack);
-            Console.WriteLine(((UnitCardBO)unitCard.originCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.renderCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.originCardBO).currentAttack);
             //给该卡上一个+3攻的buff
             Console.WriteLine("给该卡上一个+3攻的buff 4 1");
             GainAttackTempBuff gat = new GainAttackTempBuff(3, 1);
             unitCard.GainBuff(gat);
             //打印此卡buff后的属性
-            Console.WriteLine(((UnitCardBO)unitCard.renderCardBO).currentAttack);
-            Console.WriteLine(((UnitCardBO)unitCard.originCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.renderCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.originCardBO).currentAttack);
             //再叠加一次buff
             Console.WriteLine("给该卡上一个+7攻的buff 11 1");
             GainAttackTempBuff gat2 = new GainAttackTempBuff(7, 1);
             unitCard.GainBuff(gat2);
             //打印此卡buff后的属性
-            Console.WriteLine(((UnitCardBO)unitCard.renderCardBO).currentAttack);
-            Console.WriteLine(((UnitCardBO)unitCard.originCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.renderCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.originCardBO).currentAttack);
             Console.WriteLine("移除第一个buff 8 1");
             unitCard.RemoveBuff(gat);
-            Console.WriteLine(((UnitCardBO)unitCard.renderCardBO).currentAttack);
-            Console.WriteLine(((UnitCardBO)unitCard.originCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.renderCardBO).currentAttack);
+            Console.WriteLine(((InstanceCardBO)unitCard.originCardBO).currentAttack);
         }
     }
 }

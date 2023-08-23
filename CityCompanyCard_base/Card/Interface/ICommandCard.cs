@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.Card.Interface
 {
-    public abstract class ICommandCard:ICard
+    public abstract class ICommandCard:INotInstanceCard
     {
 
         public ICommandCard()
@@ -26,12 +26,13 @@ namespace CityCompanyCard_base.Card.Interface
             while (OnAsyncPlay(eventObject)) { };
         }
 
-        public override void OnBeforePlay(IEventObject eventObject)
+        public override Boolean OnBeforePlay(IEventObject eventObject)
         {
             //设置玩家行动力(AP)
             eventObject.resKeyValus.TryAdd(EventObjectExtractKey.POWER_NAME, this.originCardBO.name);
             //处理事件
             ((MainPlayer)eventObject.resPlayer).actionPoint += eventObject.modify;
+            return true;
         }
 
         public override void OnAfterPlay(IEventObject eventObject)
@@ -42,12 +43,5 @@ namespace CityCompanyCard_base.Card.Interface
             ((MainPlayer)eventObject.resPlayer).actionPoint = 5;
         }
 
-        public override void OnBeforeDraw(IEventObject eventObject)
-        {
-        }
-
-        public override void OnAfterDraw(IEventObject eventObject)
-        {
-        }
     }
 }

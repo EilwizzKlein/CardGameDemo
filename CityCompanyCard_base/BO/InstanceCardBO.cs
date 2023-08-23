@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.BO
 {
-    public class UnitCardBO:CardBO
+    public class InstanceCardBO:CardBO
     {
         public int maxHealth;
         public int currentHealth;
@@ -17,9 +17,9 @@ namespace CityCompanyCard_base.BO
 
         public override CardBO clone()
         {
-            CardBO baseBo = new UnitCardBO();
+            CardBO baseBo = new InstanceCardBO();
             baseBo = base.clone();
-            if (baseBo is UnitCardBO bo) // 检查是否能将 Animal 引用转换为 Dog 对象
+            if (baseBo is InstanceCardBO bo) // 检查是否能将 Animal 引用转换为 Dog 对象
             {
                 bo.maxHealth = maxHealth;
                 bo.currentHealth = currentHealth;

@@ -18,7 +18,7 @@ namespace CityCompanyCard_base.Manager
         {
             ICard res = eventObject.resCard!;
             //全局保存当前指令
-            ((MainPlayer)eventObject.resPlayer!).chooseCommand((ICommandCard)res);
+            ((MainPlayer)eventObject.resPlayer!).ChooseCommand((ICommandCard)res);
              res.OnPlay(eventObject);
             return true;
         }

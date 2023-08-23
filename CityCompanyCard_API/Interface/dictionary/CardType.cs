@@ -9,6 +9,9 @@ namespace CityCompanyCard_API.dictionary
     public enum CardType
     {
         Unit,
-        Command
+        Command,
+        Building,
+        Player,
+        Spell
     }
 }

@@ -29,8 +29,8 @@ namespace CityCompanyCard_test.unitTest
             Console.WriteLine("玩家使用指令1,2(未使用,使用,已使用)");
             ICommandCard command1 = player.command.unusedCommand[0];
             ICommandCard command2 = player.command.unusedCommand[1];
-            player.command.chooseCommand(command1);
-            player.command.chooseCommand(command2);
+            player.command.ChooseCommand(command1);
+            player.command.ChooseCommand(command2);
             Console.WriteLine(player.command.unusedCommand.Count);
             Console.WriteLine(player.command.usingCommand.Count);
             Console.WriteLine(player.command.usedCommand.Count);
@@ -41,7 +41,7 @@ namespace CityCompanyCard_test.unitTest
             Console.WriteLine(player.command.usedCommand.Count);
             Console.WriteLine("玩家使用指令1(未使用,使用,已使用)");
             command1 = player.command.unusedCommand[0];
-            player.command.chooseCommand(command1);
+            player.command.ChooseCommand(command1);
             Console.WriteLine(player.command.unusedCommand.Count);
             Console.WriteLine(player.command.usingCommand.Count);
             Console.WriteLine(player.command.usedCommand.Count);

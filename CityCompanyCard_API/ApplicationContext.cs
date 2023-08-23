@@ -23,6 +23,7 @@ namespace CityCompanyCard_API
         private  IMode? _mode = null; //模式对象
         public Thread SelectorThread = null;
         public CardManagerFactory? cardManagerFactory; //卡牌管理器工厂 为空避免写加载的时候忘了配置cmf
+        public EventHandlerManager? eventHandlerManager;
         private IState? _currentState;
 
         public IPlayer changeNextPlayer()
@@ -65,6 +66,10 @@ namespace CityCompanyCard_API
             }
             if (_currentState == null) {
                 throw new Exception("未设置初始状态");
+            }
+            if (eventHandlerManager == null)
+            {
+                throw new Exception("未设置事件处理器");
             }
             return flag;
         }

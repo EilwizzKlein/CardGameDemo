@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_API.Card;
+﻿using CityCompanyCard_API;
+using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.Selector.PanelSelector.UnitSeletor;
 using System;
@@ -16,12 +17,18 @@ namespace CityCompanyCard_base.Power.BasePower
             this.baseName = "攻击";
         }
         public override void AbilityAction(IEventObject ev) {
+            //1.构建攻击事件对象(空event)
+            //2.构建攻击方:event.resCard
             IUnitCard res = ev.resCard as IUnitCard;
             //选择进攻目标
             new Selector_UnitFilterByDistance<IUnitCard>().startISeletor(ev, out IUnitCard[] cards);
             if(cards != null && cards.Length>0) {
-                //结算进攻
+
                 ev.targetCard = cards;
+
+                //3.通过目标选择器构建被攻击目标:event.targetCard
+                ApplicationContext.Instance.eventHandlerManager.AttackEvent(ev);
+
                 Console.WriteLine($"{ev.resCard.controller.name}的{ev.resCard.renderCardBO.name} 对 {ev.targetCard[0].controller.name}的{ev.targetCard[0].renderCardBO.name}造成了1点伤害");
             }
             //结束进攻效果

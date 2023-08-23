@@ -30,12 +30,26 @@ namespace CityCompanyCard_API.Card
         private AttachmentZone attachmentZone = new AttachmentZone();
         public string getUUID() { return UUID; }
 
-        
-        public abstract void OnBeforePlay(IEventObject eventObject);
-        public abstract void OnPlay(IEventObject eventObject);
-        public abstract void OnAfterPlay(IEventObject eventObject);
-        public abstract void OnBeforeDraw(IEventObject eventObject);
-        public abstract void OnAfterDraw(IEventObject eventObject);
+        //抽到此卡前
+        public virtual Boolean OnBeforeDraw(IEventObject eventObject) { return true; }
+        //抽到此卡时
+        public virtual void OnDraw(IEventObject eventObject) { }
+        //抽到此卡后
+        public virtual void OnAfterDraw(IEventObject eventObject) { }
+        //打出此卡前
+        public virtual Boolean  OnBeforePlay(IEventObject eventObject) { return true; }
+        //打出此卡时
+        public virtual void OnPlay(IEventObject eventObject) { }
+        //打出此卡后
+        public virtual void OnAfterPlay(IEventObject eventObject) { }
+        //弃掉此卡前
+        public virtual Boolean OnBeforeDiscard(IEventObject eventObject) { return true; }
+        //弃掉此卡时
+        public virtual void OnDiscard(IEventObject eventObject) { }
+        //弃掉此卡后
+        public virtual void OnAfterDiscard(IEventObject eventObject) { }
+
+
 
 
         public ICard() {

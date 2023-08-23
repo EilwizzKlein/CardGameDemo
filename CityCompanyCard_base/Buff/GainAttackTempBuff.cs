@@ -31,8 +31,8 @@ namespace CityCompanyCard_base.Buff
 
         public override void renderBuff(CardBO target)
         {
-            ((UnitCardBO)target).maxAttack += this.attackValue;
-            ((UnitCardBO)target).currentAttack += this.attackValue;
+            ((InstanceCardBO)target).maxAttack += this.attackValue;
+            ((InstanceCardBO)target).currentAttack += this.attackValue;
         }
     }
 }

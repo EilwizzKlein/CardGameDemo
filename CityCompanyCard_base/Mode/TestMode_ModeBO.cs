@@ -30,6 +30,7 @@ namespace CityCompanyCard_base.Mode
             app.cardManagerFactory = new CardManagerFactory();
             app.cardManagerFactory.registManagerList(CardType.Unit, new UnitCardManager());
             app.cardManagerFactory.registManagerList(CardType.Command, new CommandCardManager());
+            app.eventHandlerManager = new BaseEventHanlderManager();
             return true;
         }
     }

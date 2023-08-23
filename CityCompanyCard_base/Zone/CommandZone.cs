@@ -27,7 +27,7 @@ namespace CityCompanyCard_base.Zone
             usingCommand.Clear();
         }
 
-        public void chooseCommand(ICommandCard command)
+        public void ChooseCommand(ICommandCard command)
         {
             if(unusedCommand.Contains(command))
             {
