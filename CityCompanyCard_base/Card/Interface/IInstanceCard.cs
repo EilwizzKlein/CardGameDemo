@@ -44,6 +44,12 @@ namespace CityCompanyCard_base.Card.Interface
         public virtual void OnAttack(IEventObject eventObject) { }
         //受到攻击后
         public virtual void OnAfterAttack(IEventObject eventObject) { }
+        //受到攻击前
+        public virtual Boolean OnBeforeCounterattack(IEventObject eventObject) { return true; }
+        //受到攻击时
+        public virtual void OnCounterattack(IEventObject eventObject) { }
+        //受到攻击后
+        public virtual void OnAfterCounterattack(IEventObject eventObject) { }
         //受到伤害前
         public virtual Boolean OnBeforeDamage(IEventObject eventObject) { return true; }
         //受到伤害时

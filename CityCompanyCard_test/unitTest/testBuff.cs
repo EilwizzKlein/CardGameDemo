@@ -20,7 +20,7 @@ namespace CityCompanyCard_test.unitTest
            //创建事件对象
            IEventObject ev = new IEventObject();
             ev.resPlayer = player;
-            EventHandlerManager.DrawCard(ev);
+            ApplicationContext.Instance.eventHandlerManager!.DrawCard(ev);
 
 
             IUnitCard unitCard = (IUnitCard)player.hand.cardList[0];

@@ -24,6 +24,7 @@ namespace CityCompanyCard_API.Interface
         public Dictionary<string, string> targetKeyValus = new Dictionary<string, string>(); //目标额外键值对
         public int modify =0; //修正值
         public int value = 0; //修正值
+        public IPower? respower; //来源能力
 
         public IEventObject() { }
 
@@ -42,7 +43,8 @@ namespace CityCompanyCard_API.Interface
             resKeyValus = new Dictionary<string, string>(ev.resKeyValus);
             targetKeyValus = new Dictionary<string, string>(ev.targetKeyValus);
             modify = ev.modify;
-            value = ev.value; 
+            value = ev.value;
+            respower = ev.respower;
         }
     }
 }

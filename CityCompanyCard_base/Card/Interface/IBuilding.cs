@@ -22,7 +22,9 @@ namespace CityCompanyCard_base.Card.Interface
         {
             ((InstanceCardBO)originCardBO).maxHealth = value;
             ((InstanceCardBO)originCardBO).currentHealth = value;
-            this.renderBuff();
+            this.Render();
         }
+
+        public override Boolean OnBeforeCounterattack(IEventObject eventObject) { return false; }
     }
 }

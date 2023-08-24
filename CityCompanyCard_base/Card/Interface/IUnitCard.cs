@@ -37,13 +37,13 @@ namespace CityCompanyCard_API.Card
         {
             ((InstanceCardBO)originCardBO).maxAttack = value;
             ((InstanceCardBO)originCardBO).currentAttack = value;
-            this.renderBuff();
+            this.Render();
         }
         public void InitHealth(int value)
         {
             ((InstanceCardBO)originCardBO).maxHealth = value;
             ((InstanceCardBO)originCardBO).currentHealth = value;
-            this.renderBuff();
+            this.Render();
         }
 
         public override void OnAttack(IEventObject eventObject)

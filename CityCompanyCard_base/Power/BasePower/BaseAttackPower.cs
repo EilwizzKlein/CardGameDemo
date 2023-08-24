@@ -24,12 +24,17 @@ namespace CityCompanyCard_base.Power.BasePower
             new Selector_UnitFilterByDistance<IUnitCard>().startISeletor(ev, out IUnitCard[] cards);
             if(cards != null && cards.Length>0) {
 
-                ev.targetCard = cards;
-
                 //3.通过目标选择器构建被攻击目标:event.targetCard
-                ApplicationContext.Instance.eventHandlerManager.AttackEvent(ev);
+                ev.targetCard = cards;
+                //4.攻击方预检定OnBeforePower()⇒如果返回是True则继续结算
+                if (!res.OnBeforeUsePower(ev)) { return; }
+                //5.攻击方结算攻击事件OnPower()⇒计算攻击伤害,修改event.value;
+                res.OnUsePower(ev);
 
-                Console.WriteLine($"{ev.resCard.controller.name}的{ev.resCard.renderCardBO.name} 对 {ev.targetCard[0].controller.name}的{ev.targetCard[0].renderCardBO.name}造成了1点伤害");
+                //调用处理器
+                if (!ApplicationContext.Instance.eventHandlerManager.AttackEvent(ev)) { return; }
+
+                res.OnAfterUsePower(ev);
             }
             //结束进攻效果
         }

@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_API.Factory;
+﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Factory;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Manager;
 using System;
@@ -15,33 +16,38 @@ namespace CityCompanyCard_API
         private int _playerIndex = 0;
         private static ApplicationContext _instance = new ApplicationContext();
         private static readonly object lockObject = new object();
-        private  IPlayer? _currentPlayer;
+        private IPlayer? _currentPlayer;
         public List<IPlayer> Player = new List<IPlayer>();
-        public Dictionary<string,IBattleGround> BattleZone = new Dictionary<string, IBattleGround>(); //战场元素
+        public Dictionary<string, IBattleGround> BattleZone = new Dictionary<string, IBattleGround>(); //战场元素
         public Dictionary<string, ITrigger> Trigger = new Dictionary<string, ITrigger>(); //触发器组
         public Boolean isInit = false; //是否完成初始化
-        private  IMode? _mode = null; //模式对象
+        private IMode? _mode = null; //模式对象
         public Thread SelectorThread = null;
         public CardManagerFactory? cardManagerFactory; //卡牌管理器工厂 为空避免写加载的时候忘了配置cmf
         public EventHandlerManager? eventHandlerManager;
         private IState? _currentState;
+        public List<ICard>? renderQueue = null;
+        public List<IEffect> effectQueue = new List<IEffect>();
 
         public IPlayer changeNextPlayer()
         {
-            _playerIndex = (_playerIndex+ 1) % Player.Count;
+            _playerIndex = (_playerIndex + 1) % Player.Count;
             _currentPlayer = Player[_playerIndex];
             return _currentPlayer;
         }
 
-        public  void  SetMode(IMode mode) {
+        public void SetMode(IMode mode)
+        {
             _mode = mode;
         }
 
-        public  void SetCurrentPlayer(IPlayer currentPlayer) {
+        public void SetCurrentPlayer(IPlayer currentPlayer)
+        {
             _currentPlayer = currentPlayer;
-         }
+        }
 
-        public  IPlayer GetCurrentPlayer() {
+        public IPlayer GetCurrentPlayer()
+        {
             return _currentPlayer!;
         }
 
@@ -54,17 +60,20 @@ namespace CityCompanyCard_API
         {
             return _currentState!;
         }
-        public  Boolean Init()
+        public Boolean Init()
         {
             bool flag = true;
-            if (_mode == null) {
+            if (_mode == null)
+            {
                 throw new Exception("初始化未赋值模式");
             }
             flag = flag && _mode.InitApp();
-            if (cardManagerFactory == null) {
+            if (cardManagerFactory == null)
+            {
                 throw new Exception("初始化未赋值卡牌管理器");
             }
-            if (_currentState == null) {
+            if (_currentState == null)
+            {
                 throw new Exception("未设置初始状态");
             }
             if (eventHandlerManager == null)
@@ -76,11 +85,35 @@ namespace CityCompanyCard_API
 
         public void RegisterPlayer(IPlayer player)
         {
-           Player.Add(player);
-            if(_currentPlayer is null)
+            Player.Add(player);
+            if (_currentPlayer is null)
             {
                 _currentPlayer = player;
             }
+        }
+        public void RunEffectQueue()
+        {
+            for (int i = 0; i < effectQueue.Count; i++)
+            {
+                effectQueue[i].run();
+            }
+            effectQueue.Clear();
+        }
+
+        public void StartRenderQueue()
+        {
+            renderQueue = new List<ICard>();
+        }
+
+        public void RunRenderQueue()
+        {
+            if (renderQueue == null) { return; }
+            for (int i = 0; i < renderQueue.Count; i++)
+            {
+                renderQueue[i].OnRerender();
+            }
+            renderQueue.Clear();
+            renderQueue = null;
         }
 
         // 私有构造函数，防止外部实例化对象
@@ -123,5 +156,7 @@ namespace CityCompanyCard_API
                 return _instance;
             }
         }
+
+
     }
 }

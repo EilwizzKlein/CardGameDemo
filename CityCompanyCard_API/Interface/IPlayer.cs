@@ -32,7 +32,7 @@ namespace CityCompanyCard_API.Interface
             IEventObject eventObject = new IEventObject();
             eventObject.resPlayer = this;
             eventObject.resKeyValus.Add(EventObjectExtractKey.DRAW_CARD_NUMBER, cardNumber.ToString());
-            EventHandlerManager.DrawCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager!.DrawCard(eventObject);
         }
 
         public virtual void PlayCard(ICard card)

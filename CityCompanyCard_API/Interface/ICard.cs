@@ -49,6 +49,23 @@ namespace CityCompanyCard_API.Card
         //弃掉此卡后
         public virtual void OnAfterDiscard(IEventObject eventObject) { }
 
+        public void Render()
+        {
+            if (ApplicationContext.Instance.renderQueue == null) {
+                OnRerender();
+            }
+            else
+            {
+                ApplicationContext.Instance.renderQueue.Add(this);
+            }
+        }
+        /// <summary>
+        /// 重新渲染,死亡结算
+        /// </summary>
+        internal void OnRerender() {
+            this.renderBuff();
+        }
+
 
 
 
@@ -76,7 +93,7 @@ namespace CityCompanyCard_API.Card
             }
         }
 
-        public void renderBuff()
+        private void renderBuff()
         {
             renderCardBO = originCardBO.clone();
             buffs.ForEach(buff =>
