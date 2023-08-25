@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.BO;
 using CityCompanyCard_base.Selector.PanelSelector.UnitSeletor;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,13 @@ namespace CityCompanyCard_base.Power.BasePower
 
                 //3.通过目标选择器构建被攻击目标:event.targetCard
                 ev.targetCard = cards;
+                ev.value = ((InstanceCardBO)res.renderCardBO).currentAttack;
                 //4.攻击方预检定OnBeforePower()⇒如果返回是True则继续结算
                 if (!res.OnBeforeUsePower(ev)) { return; }
                 //5.攻击方结算攻击事件OnPower()⇒计算攻击伤害,修改event.value;
                 res.OnUsePower(ev);
-
                 //调用处理器
                 if (!ApplicationContext.Instance.eventHandlerManager.AttackEvent(ev)) { return; }
-
                 res.OnAfterUsePower(ev);
             }
             //结束进攻效果

@@ -1,6 +1,6 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.Interface.dictionary;
+using CityCompanyCard_API.Interface.Dictionary;
 using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.Selector.PanelSelector;
@@ -34,7 +34,7 @@ namespace CityCompanyCard_base.Card.Command
             else
             {
                 //获取生物
-                new Selector_ResUnitFactory().getGetCanDefenceUnitFilter().startISeletor(ev, out IUnitCard[] outputCard);
+                new Selector_ResUnitFactory().getGetCanAttackUnitFilter().startISeletor(ev, out IUnitCard[] outputCard);
                 if (outputCard.Length > 0)
                 {
                     IUnitCard card = outputCard[0];

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.dictionary;
+using CityCompanyCard_API.Dictionary;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using CityCompanyCard_API.Utils;
@@ -62,12 +62,9 @@ namespace CityCompanyCard_API.Card
         /// <summary>
         /// 重新渲染,死亡结算
         /// </summary>
-        internal void OnRerender() {
+        public virtual void OnRerender() {
             this.renderBuff();
         }
-
-
-
 
         public ICard() {
             renderCardBO = originCardBO.clone();

@@ -1,8 +1,9 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.Interface.dictionary;
+using CityCompanyCard_API.Interface.Dictionary;
 using CityCompanyCard_API.Manager;
+using CityCompanyCard_base.BO;
 using CityCompanyCard_base.Card.Interface;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,6 @@ namespace CityCompanyCard_base.Manager
             IInstanceCard? res = eventObject.resCard as IInstanceCard;
             ICard[] targets = eventObject.targetCard!;
             bool flag = false;
-            ApplicationContext.Instance.StartRenderQueue();
             for (int i = 0; i < targets.Length; i++)
             {
                 //为了避免参数干扰 单独拷贝事件对象
@@ -110,29 +110,8 @@ namespace CityCompanyCard_base.Manager
                     //17.被攻击方处理攻击后事件OnAfterAttack();
                     target.OnAfterAttack(ev);
                 }
-                //结算效果堆叠
-                ApplicationContext.Instance.RunRenderQueue();
-                ApplicationContext.Instance.RunEffectQueue();
             }
-
-
-
-
-
-
-
-
-
-
-           
-
-           
-
-            
-
-
             return flag;
-
         }
 
         public override Boolean PlayPower(IEventObject eventObject)

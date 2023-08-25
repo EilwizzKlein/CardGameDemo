@@ -1,4 +1,5 @@
 ﻿using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.Interface.Dictionary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,16 @@ namespace CityCompanyCard_base.Power.BasePower
             onAbilityAction = AbilityAction;
         }
 
-        public virtual void AbilityAction(IEventObject ev) { }
+        public virtual void AbilityAction(IEventObject ev){
+            //清理原有的ev
+            if (ev.resKeyValus.ContainsKey(EventObjectExtractKey.POWER_NAME))
+            {
+                ev.resKeyValus[EventObjectExtractKey.POWER_NAME] = baseName;
+            }
+            else
+            {
+                ev.resKeyValus.Add(EventObjectExtractKey.POWER_NAME, baseName);
+            }
+        }
     }
 }

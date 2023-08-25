@@ -1,6 +1,6 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.Interface.dictionary;
+using CityCompanyCard_API.Interface.Dictionary;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;

@@ -1,5 +1,5 @@
 ﻿using CityCompanyCard_API;
-using CityCompanyCard_API.dictionary;
+using CityCompanyCard_API.Dictionary;
 using CityCompanyCard_API.Factory;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BattleGround;

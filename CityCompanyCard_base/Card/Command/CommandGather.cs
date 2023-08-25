@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CityCompanyCard_API.Interface.dictionary;
+using CityCompanyCard_API.Interface.Dictionary;
 
 namespace CityCompanyCard_base.Card.Command
 {

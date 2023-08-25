@@ -1,5 +1,5 @@
-﻿using CityCompanyCard_API.Card;
-using CityCompanyCard_API.dictionary;
+﻿using CityCompanyCard_API;
+using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.RenderObject;
 using CityCompanyCard_base.BO;
@@ -16,6 +16,7 @@ namespace CityCompanyCard_base.Card.Interface
     {
         private RenderBool _canBeChosen = new RenderBool(false);
         public RenderBool IsCanBeChosen { get => _canBeChosen; }
+        public bool isDead = false;
 
         public IInstanceCard()
         {
@@ -23,7 +24,6 @@ namespace CityCompanyCard_base.Card.Interface
             this.renderCardBO = originCardBO.clone();
            
         }
-
         //能力相关
         //使用能力前
         public virtual Boolean OnBeforeUsePower(IEventObject eventObject) { return true; }
@@ -47,19 +47,39 @@ namespace CityCompanyCard_base.Card.Interface
         //受到攻击前
         public virtual Boolean OnBeforeCounterattack(IEventObject eventObject) { return true; }
         //受到攻击时
-        public virtual void OnCounterattack(IEventObject eventObject) { }
+        public virtual void OnCounterattack(IEventObject eventObject) {
+            this.Render();
+            eventObject.value = ((InstanceCardBO)renderCardBO).currentAttack;
+        }
         //受到攻击后
         public virtual void OnAfterCounterattack(IEventObject eventObject) { }
         //受到伤害前
         public virtual Boolean OnBeforeDamage(IEventObject eventObject) { return true; }
         //受到伤害时
-        public virtual void OnDamage(IEventObject eventObject) { }
+        public virtual void OnDamage(IEventObject eventObject) {
+            int value = eventObject.value;
+            ((InstanceCardBO)originCardBO).currentHealth -= value;
+            this.Render();
+            if (((InstanceCardBO)renderCardBO).currentHealth <= 0) {
+                if (!OnBeforeSacrifice(eventObject)) { return; }
+                OnDestroy(eventObject);
+                OnAfterDestroy(eventObject);
+            }
+        }
         //受到伤害后
         public virtual void OnAfterDamage(IEventObject eventObject) { }
+        //受到回复前
+        public virtual Boolean OnBeforeHeal(IEventObject eventObject) { return true; }
+        //受到回复时
+        public virtual void OnHeal(IEventObject eventObject) { }
+        //受到回复后
+        public virtual void OnAfterHeal(IEventObject eventObject) { }
         //被摧毁前
         public virtual Boolean OnBeforeDestroy(IEventObject eventObject) { return true; }
         //被摧毁时
-        public virtual void OnDestroy(IEventObject eventObject) { }
+        public virtual void OnDestroy(IEventObject eventObject) {
+            Console.WriteLine("啊我死了");
+        }
         //被摧毁后
         public virtual void OnAfterDestroy(IEventObject eventObject) { }
         //被牺牲前

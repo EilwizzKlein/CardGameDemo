@@ -1,4 +1,4 @@
-﻿using CityCompanyCard_API.dictionary;
+﻿using CityCompanyCard_API.Dictionary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

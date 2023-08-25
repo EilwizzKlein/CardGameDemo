@@ -1,5 +1,4 @@
 ﻿using CityCompanyCard_API.Card;
-using CityCompanyCard_API.dictionary;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_base.Utils;

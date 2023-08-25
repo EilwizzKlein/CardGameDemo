@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_API.Interface.dictionary
+namespace CityCompanyCard_API.Interface.Dictionary
 {
     public class TriggerKey
     {

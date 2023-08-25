@@ -1,6 +1,5 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.Interface.dictionary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

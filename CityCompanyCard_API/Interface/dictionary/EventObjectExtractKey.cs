@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_API.Interface.dictionary
+namespace CityCompanyCard_API.Interface.Dictionary
 {
     public class EventObjectExtractKey
     {

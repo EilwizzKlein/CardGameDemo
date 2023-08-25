@@ -1,7 +1,7 @@
 ﻿using CityCompanyCard_API.Card;
-using CityCompanyCard_API.dictionary;
+using CityCompanyCard_API.Dictionary;
 using CityCompanyCard_API.Interface;
-using CityCompanyCard_API.Interface.dictionary;
+using CityCompanyCard_API.Interface.Dictionary;
 using CityCompanyCard_base.Player;
 using System;
 using System.Collections.Generic;
