@@ -2,6 +2,7 @@
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Dictionary;
+using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.BO;
 using CityCompanyCard_base.Card.Interface;
@@ -63,6 +64,26 @@ namespace CityCompanyCard_base.Manager
 
         public override Boolean PlayCard(IEventObject eventObject)
         {
+            ICard card = eventObject.resCard!;
+            if (!card.OnBeforePlay(eventObject)) { return false; }
+
+            //是否为免费释放
+            if (!eventObject.resKeyValus.ContainsKey(EventObjectExtractKey.FREE_TO_USE) || eventObject.resKeyValus[EventObjectExtractKey.FREE_TO_USE] != null)
+            {
+                //费用检查,消耗费用
+                if (eventObject.resPlayer!.mana < card.renderCardBO.cost)
+                {
+                    return false;
+                }
+                eventObject.resPlayer.mana -= card.renderCardBO.cost;
+            }
+            //区域转移
+            if(card is IInstanceCard)
+            {
+                ZoneManager.moveCardToBattleGround(eventObject.targetBattleGround[0], card, (BattleGroundTileZone)eventObject.targetZone[0]);
+            }
+            card.OnPlay(eventObject);
+            card.OnAfterPlay(eventObject);
             return true;
         }
 
@@ -109,6 +130,34 @@ namespace CityCompanyCard_base.Manager
                     target.OnAfterCounterattack(counterAttack);
                     //17.被攻击方处理攻击后事件OnAfterAttack();
                     target.OnAfterAttack(ev);
+                }
+            }
+
+            //死亡结算
+            if (res.isDead)
+            {
+                if (res.OnBeforeDestroy(eventObject)) { 
+                    res.OnDestroy(eventObject);
+                    res.OnAfterDestroy(eventObject);
+                }
+            }
+            for (int i = 0; i < targets.Length; i++)
+            {
+                //为了避免参数干扰 单独拷贝事件对象
+                IEventObject ev = new IEventObject(eventObject);
+                IInstanceCard target = (IInstanceCard)targets[i];
+               
+                if (target.isDead)
+                {
+                    IEventObject counterAttack = new IEventObject();
+                    //11.构建反击事件对象:event.resCard,event.targetCard
+                    counterAttack.resCard = target;
+                    counterAttack.targetCard = new ICard[] { res! };
+                    if (target.OnBeforeDestroy(counterAttack))
+                    {
+                        target.OnDestroy(counterAttack);
+                        target.OnAfterDestroy(counterAttack);
+                    }
                 }
             }
             return flag;

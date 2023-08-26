@@ -1,6 +1,8 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
+using CityCompanyCard_API.Interface.Instance;
+using CityCompanyCard_API.Manager;
 using CityCompanyCard_API.RenderObject;
 using CityCompanyCard_base.BO;
 using CityCompanyCard_base.Power.BasePower;
@@ -22,7 +24,18 @@ namespace CityCompanyCard_base.Card.Interface
         {
             this.originCardBO = new InstanceCardBO();
             this.renderCardBO = originCardBO.clone();
-           
+        }
+
+        public override void OnPlay(IEventObject eventObject)
+        {
+          
+        }
+
+        public override void OnRerender()
+        {
+            base.OnRerender();
+            if (((InstanceCardBO)renderCardBO).currentHealth <= 0) { isDead = true; }
+            else { isDead = false; }
         }
         //能力相关
         //使用能力前
@@ -60,11 +73,6 @@ namespace CityCompanyCard_base.Card.Interface
             int value = eventObject.value;
             ((InstanceCardBO)originCardBO).currentHealth -= value;
             this.Render();
-            if (((InstanceCardBO)renderCardBO).currentHealth <= 0) {
-                if (!OnBeforeSacrifice(eventObject)) { return; }
-                OnDestroy(eventObject);
-                OnAfterDestroy(eventObject);
-            }
         }
         //受到伤害后
         public virtual void OnAfterDamage(IEventObject eventObject) { }

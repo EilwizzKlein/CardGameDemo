@@ -10,5 +10,6 @@ namespace CityCompanyCard_API.Interface.Dictionary
     {
         public const string DRAW_CARD_NUMBER = "抽卡数";
         public const string POWER_NAME = "能力名称";
+        public const string FREE_TO_USE = "免费释放";
     }
 }

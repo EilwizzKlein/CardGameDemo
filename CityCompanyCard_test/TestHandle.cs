@@ -85,8 +85,10 @@ namespace CityCompanyCard_test
                 eventObject.resCard =  card;
                 int index = int.Parse(command[1]);
                 eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[index] };
+                eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
+
                 eventObject.resZone = player.hand ;
-                PlayerManager.playCard(eventObject);
+                ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
             }
         }
 

@@ -39,28 +39,28 @@ namespace CityCompanyCard_test.unitTest
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[1] };
             eventObject.resZone = hands;
             eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
-            PlayerManager.playCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = unitCard;
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[2] };
             eventObject.resZone = hands;
             eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
-            PlayerManager.playCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = unitCard;
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[3] };
             eventObject.resZone = hands;
             eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
-            PlayerManager.playCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
 
             unitCard = (IUnitCard)player.hand.cardList[0];
             eventObject.resCard = unitCard;
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[4] };
             eventObject.resZone = hands;
             eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
-            PlayerManager.playCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
 
             Console.WriteLine($"玩家当前手牌数为1:${player.hand.cardList.Count}");
 
@@ -69,7 +69,7 @@ namespace CityCompanyCard_test.unitTest
             eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[5] };
             eventObject.resZone = hands;
             eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
-            PlayerManager.playCard(eventObject);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
 
             Console.WriteLine($"玩家当前手牌数为0:${player.hand.cardList.Count}");
 
@@ -80,7 +80,7 @@ namespace CityCompanyCard_test.unitTest
             commandEV.resPlayer = player;
             //测试move指令
 
-            PlayerManager.playCard(commandEV);
+            ApplicationContext.Instance.eventHandlerManager.PlayCard(commandEV);
         }
     }
 }

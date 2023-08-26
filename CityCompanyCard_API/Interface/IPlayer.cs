@@ -35,12 +35,8 @@ namespace CityCompanyCard_API.Interface
             ApplicationContext.Instance.eventHandlerManager!.DrawCard(eventObject);
         }
 
-        public virtual void PlayCard(ICard card)
+        public virtual void OnPlayCard(IEventObject ev)
         {
-            IEventObject eventObject = new IEventObject();
-            eventObject.resPlayer = this;
-            eventObject.resCard = card;
-            PlayerManager.playCard(eventObject);
         }
 
         /// <summary>

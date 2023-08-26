@@ -16,6 +16,10 @@ namespace CityCompanyCard_base.Player
         public CommandZone command = new CommandZone();
         public int actionPoint;
 
+        public override void OnPlayCard(IEventObject ev)
+        {
+            hand.cardList.Remove(ev.resCard);
+        }
 
         public void ChooseCommand(ICommandCard card) {
             command.ChooseCommand(card);
@@ -27,9 +31,10 @@ namespace CityCompanyCard_base.Player
         }
 
         public MainPlayer() {
-            this.hand = new HandZone();
-            this.grave = new IZone();
-            this.deck = new IZone();
+            hand = new HandZone();
+            grave = new IZone();
+            deck = new IZone();
+            mana = 2;
             actionPoint=5;
         }
     }
