@@ -27,7 +27,7 @@ namespace CityCompanyCard_API.Card
         public IPlayer controller; //操控者
         private List<IBuff> buffs = new List<IBuff>();
         protected IZone currentZone = null;
-        private AttachmentZone attachmentZone = new AttachmentZone();
+        protected AttachmentZone attachmentZone = new AttachmentZone();
         public string getUUID() { return UUID; }
 
         //抽到此卡前
