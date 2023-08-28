@@ -20,7 +20,7 @@ namespace CityCompanyCard_base.Mode
         {
             ApplicationContext app = ApplicationContext.Instance;
             //添加玩家
-
+        
             //设置主要战场
             app.BattleZone.Add(BattlegroundConst.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattlegroundConst.MAIN_BATTLE_GROUND));
             //注册卡牌管理器

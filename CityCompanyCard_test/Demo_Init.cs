@@ -11,6 +11,7 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.Mode;
 using CityCompanyCard_API.Card;
 using CityCompanyCard_test.unitTest;
+using CityCompanyCard_mod.Card.UnitCard;
 
 namespace CityCompanyCard_test
 {
@@ -20,17 +21,19 @@ namespace CityCompanyCard_test
         {
             ApplicationContext app = ApplicationContext.Instance;
             IMode modeBO = ModeFactory.GetModeByType(ModeFactory.TEST_MODE);
+            Type type = typeof(UnitCard_PoorFarmer);
+            Dictionary<string, Type> cardmap = new Dictionary<string, Type>
+            {
+                { "可怜的农夫", typeof(UnitCard_PoorFarmer) },
+                { "可怜的工人", typeof(UnitCard_PoorWorker) }
+            };
+            app.cardManager.loadCardMap(cardmap);
+            //添加玩家
+            MainPlayer player = new MainPlayer();
+            app.RegisterPlayer(player);
             //创建主要玩家
             MainPlayer mainplayer = new MainPlayer();
             mainplayer.name = "Test";
-            for (int i = 0; i < 20; i++)
-            {
-                mainplayer.deck.cardList.Add(new Unit_Demo());
-            }
-            for (int i = 0; i < 20; i++)
-            {
-                mainplayer.deck.cardList.Add(new Unit_Farmer());
-            }
             mainplayer.deck.sufferZone();
             app.SetMode(modeBO);
             app.RegisterPlayer(mainplayer);
@@ -59,7 +62,7 @@ namespace CityCompanyCard_test
             //testCommand.start();
             //testMoveCommand.start();
             //testGather.start();
-            testAttackCommand.start();
+            //testAttackCommand.start();
 
             while (TestHandle.flag)
             {

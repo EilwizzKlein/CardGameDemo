@@ -5,6 +5,7 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Dictionary;
 using CityCompanyCard_base.Manager;
+using CityCompanyCard_base.Player;
 using CityCompanyCard_base.State;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace CityCompanyCard_base.Mode
         {
             ApplicationContext app = ApplicationContext.Instance;
             Console.WriteLine("欢迎进入测试模式");
-            //添加玩家
             //设置主要战场
             app.BattleZone.Add(BattlegroundConst.MAIN_BATTLE_GROUND, BattleGroundFactory.GetBattleGroundByType(BattlegroundConst.MAIN_BATTLE_GROUND));
             //注册卡牌管理器

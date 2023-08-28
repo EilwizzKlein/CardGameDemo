@@ -34,7 +34,11 @@ namespace CityCompanyCard_test
                     break;
                 case "DRAW":
                     //构造eventObject
-                 
+                    //构建EventObject;
+                    IEventObject eventObject = new IEventObject();
+                    eventObject.resPlayer = player;
+                    eventObject.resZone = player.hand;
+                    ApplicationContext.Instance.eventHandlerManager.DrawCard(eventObject);
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);
@@ -83,6 +87,7 @@ namespace CityCompanyCard_test
                 //构建EventObject;
                 IEventObject eventObject = new IEventObject();
                 eventObject.resCard =  card;
+                eventObject.resPlayer = player;
                 int index = int.Parse(command[1]);
                 eventObject.targetZone = new IZone[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND).battleGrounds[index] };
                 eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };

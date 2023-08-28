@@ -44,9 +44,11 @@ namespace CityCompanyCard_base.Manager
                     if (player.deck.cardList.Count > 0 && (player.hand.max < 0 || player.hand.cardList.Count < player.hand.max))
                     {
                         ICard card = player.deck.cardList[0];
+                        eventObject.targetCard = new ICard[] { card };
                         card.OnBeforeDraw(eventObject);
                         player.deck.cardList.Remove(card);
                         player.hand.cardList.Add(card);
+                        card.setZone(player.hand);
                         card.OnAfterDraw(eventObject);
                     }
                 }

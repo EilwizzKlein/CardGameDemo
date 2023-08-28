@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_mod.Card.UnitCard
 {
-    public class UnitCard_PoorFarmer:IUnitCard
+    public class UnitCard_PoorWorker : IUnitCard
     {
-        public UnitCard_PoorFarmer()
+        public UnitCard_PoorWorker()
         {
-            this.originCardBO.name = "可怜的农夫";
-            this.id = "UnitCard_PoorFarmer"; //保证ID唯一 不和其他卡重复
+            this.originCardBO.name = "可怜的工人";
+            this.id = "UnitCard_PoorWorker"; //保证ID唯一 不和其他卡重复
             this.originCardBO.cost = 1; //费用
-            this.InitAttack(0); //攻击力
-            this.InitHealth(2); //血量
+            this.InitAttack(1); //攻击力
+            this.InitHealth(1); //血量
             this.originCardBO.subType.Add(CardConst.unitSubtype.HUMAN); //子类别,一般在Subtype中找
             //this.exCost.Add(CardConst.exCostType.FOOD, 1); //额外费用
-            this.originCardBO.effect = "[收集:1]获取1点食物"; //效果文本
-            this.AddPower("收集", new IPower("[收集:1]获取1点食物", 1, this.OnAbilityAction));
+            this.originCardBO.effect = "[收集:1]获取1点金钱"; //效果文本
+            this.AddPower("收集", new IPower("[收集:1]获取1点金钱", 1, this.OnAbilityAction));
         }
 
         private void OnAbilityAction(IEventObject ev)
@@ -29,7 +29,7 @@ namespace CityCompanyCard_mod.Card.UnitCard
             int baseValue = 1;
             baseValue += ev.modify;
             //获取修正值
-            this.controller.GainExMana(CardConst.exCostType.FOOD, baseValue);
+            this.controller.mana+=1;
         }
     }
 }

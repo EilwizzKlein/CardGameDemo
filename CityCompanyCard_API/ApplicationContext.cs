@@ -24,6 +24,7 @@ namespace CityCompanyCard_API
         private IMode? _mode = null; //模式对象
         public Thread SelectorThread = null;
         public CardManagerFactory? cardManagerFactory; //卡牌管理器工厂 为空避免写加载的时候忘了配置cmf
+        public CardManager cardManager = new CardManager(); //卡牌管理器,用于管理卡牌的通用方法
         public EventHandlerManager? eventHandlerManager;
         private IState? _currentState;
         public List<ICard>? renderQueue = null;

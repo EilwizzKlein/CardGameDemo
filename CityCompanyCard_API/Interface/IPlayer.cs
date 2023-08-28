@@ -23,6 +23,7 @@ namespace CityCompanyCard_API.Interface
         public int mana;
         public int maxMana = 0;
         public int health = 0;
+        public ICard? renderCard;
         public Dictionary<string, int> exMana = new Dictionary<string, int>();
         private List<IBuff> buffs = new List<IBuff>();
         private AttachmentZone attachmentZone = new AttachmentZone();
@@ -84,6 +85,16 @@ namespace CityCompanyCard_API.Interface
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 初始化卡牌
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual Boolean InitDeckByList(string[] list)
+        {
+            return true;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CityCompanyCard_base.Utils
 {
     public class AppUtils
     {
+
     private ManagerFactory managerFactory = new ManagerFactory();
         public static IZone getBattleGroundTiles(string key,int index)
         {
