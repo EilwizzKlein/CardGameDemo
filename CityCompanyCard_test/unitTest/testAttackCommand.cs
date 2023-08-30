@@ -131,6 +131,8 @@ namespace CityCompanyCard_test.unitTest
             //测试move指令
 
             ApplicationContext.Instance.eventHandlerManager.PlayCard(commandEV);
+
+            Console.WriteLine($"玩家当前指令数:{player.command.unusedCommand.Count}");
         }
     }
 }

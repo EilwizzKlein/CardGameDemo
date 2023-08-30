@@ -193,9 +193,6 @@ namespace CityCompanyCard_base.Card.Interface
                     ((IInstanceCard)card).OnDamage(eventObject);
                 }
             });
-            int value = eventObject.value;
-            ((InstanceCardBO)originCardBO).currentHealth -= value;
-            this.Render();
         }
         //受到伤害后
         public virtual void OnAfterDamage(IEventObject eventObject) {
@@ -262,7 +259,6 @@ namespace CityCompanyCard_base.Card.Interface
                     ((IInstanceCard)card).OnDestroy(eventObject);
                 }
             });
-            Console.WriteLine("啊我死了");
         }
         //被摧毁后
         public virtual void OnAfterDestroy(IEventObject eventObject) {
@@ -306,6 +302,43 @@ namespace CityCompanyCard_base.Card.Interface
                     ((IInstanceCard)card).OnAfterSacrifice(eventObject);
                 }
             });
+        }
+
+        public virtual Boolean OnBeforeDie(IEventObject eventObject)
+        {
+            Boolean flag = true;
+            this.attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    flag = flag && ((IInstanceCard)card).OnBeforeDie(eventObject);
+                }
+            });
+            return flag;
+        }
+        //被牺牲时
+        public virtual void OnDie(IEventObject eventObject)
+        {
+            attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    ((IInstanceCard)card).OnDie(eventObject);
+                }
+            });
+        }
+        //被牺牲后
+        public virtual void OnAfterDie(IEventObject eventObject)
+        {
+            attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    ((IInstanceCard)card).OnAfterDie(eventObject);
+                }
+            });
+
+            Console.WriteLine("啊我死了");
         }
 
     }

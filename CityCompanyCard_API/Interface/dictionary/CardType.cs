@@ -12,6 +12,8 @@ namespace CityCompanyCard_API.Dictionary
         Command,
         Building,
         Player,
-        Spell
+        Spell,
+        Instance,
+        NotInstance
     }
 }

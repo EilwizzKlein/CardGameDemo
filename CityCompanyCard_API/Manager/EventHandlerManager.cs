@@ -22,6 +22,7 @@ namespace CityCompanyCard_API.Manager
 
         public abstract Boolean CreateCard(IEventObject eventObject);
 
+
         public abstract Boolean GoToNextState(IEventObject eventObject);
     }
 }

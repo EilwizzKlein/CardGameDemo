@@ -9,6 +9,8 @@ namespace CityCompanyCard_API.Interface
 {
     public abstract class ICardManager
     {
-        public abstract Boolean PlayCard(IEventObject eventObject);
+        public abstract void PlayCard(ICard card, IEventObject eventObject);
+
+        public abstract void GetDamage(ICard card, IEventObject eventObject);
     }
 }

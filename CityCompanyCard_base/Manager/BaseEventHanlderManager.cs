@@ -1,5 +1,6 @@
 ﻿using CityCompanyCard_API;
 using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Dictionary;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Dictionary;
 using CityCompanyCard_API.Interface.Instance;
@@ -79,11 +80,19 @@ namespace CityCompanyCard_base.Manager
                 }
                 eventObject.resPlayer.mana -= card.renderCardBO.cost;
             }
-            //区域转移
+            ICardManager cm = null;
             if(card is IInstanceCard)
             {
-                ZoneManager.moveCardToBattleGround(eventObject.targetBattleGround[0], card, (BattleGroundTileZone)eventObject.targetZone[0]);
+                ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.Instance, out cm);
+            }else if(card is INotInstanceCard)
+            {
+                ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.NotInstance, out cm);
             }
+            if(cm == null)
+            {
+                return false;
+            }
+            cm.PlayCard(card,eventObject);
             card.OnPlay(eventObject);
             card.OnAfterPlay(eventObject);
             return true;

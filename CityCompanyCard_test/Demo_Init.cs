@@ -22,6 +22,7 @@ namespace CityCompanyCard_test
             ApplicationContext app = ApplicationContext.Instance;
             IMode modeBO = ModeFactory.GetModeByType(ModeFactory.TEST_MODE);
             Type type = typeof(UnitCard_PoorFarmer);
+            //测试加载逻辑
             Dictionary<string, Type> cardmap = new Dictionary<string, Type>
             {
                 { "可怜的农夫", typeof(UnitCard_PoorFarmer) },
@@ -62,7 +63,7 @@ namespace CityCompanyCard_test
             //testCommand.start();
             //testMoveCommand.start();
             //testGather.start();
-            //testAttackCommand.start();
+            testAttackCommand.start();
 
             while (TestHandle.flag)
             {

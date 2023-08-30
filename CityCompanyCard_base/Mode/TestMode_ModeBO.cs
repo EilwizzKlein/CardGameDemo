@@ -5,6 +5,7 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Dictionary;
 using CityCompanyCard_base.Manager;
+using CityCompanyCard_base.Manager.CardManager;
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.State;
 using System;
@@ -28,7 +29,8 @@ namespace CityCompanyCard_base.Mode
             //注册卡牌管理器
             app.SetCurrentState(new State_TurnStart());
             app.cardManagerFactory = new CardManagerFactory();
-            app.cardManagerFactory.registManagerList(CardType.Unit, new UnitCardManager());
+            app.cardManagerFactory.registManagerList(CardType.Instance, new InstanceCardManager());
+            app.cardManagerFactory.registManagerList(CardType.NotInstance, new NotInstanceCardManager());
             app.cardManagerFactory.registManagerList(CardType.Command, new CommandCardManager());
             app.eventHandlerManager = new BaseEventHanlderManager();
             return true;

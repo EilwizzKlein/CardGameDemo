@@ -3,6 +3,7 @@ using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Card.Interface;
+using CityCompanyCard_base.Manager.CardManager;
 using CityCompanyCard_base.Player;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,12 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.Manager
 {
-    public class CommandCardManager : ICardManager
+    public class CommandCardManager : NotInstanceCardManager
     {
-        public override bool PlayCard( IEventObject eventObject)
+        public override void PlayCard(ICard card, IEventObject eventObject)
         {
-            ICard res = eventObject.resCard!;
-            //全局保存当前指令
-            ((MainPlayer)eventObject.resPlayer!).ChooseCommand((ICommandCard)res);
-             res.OnPlay(eventObject);
-            return true;
+            ICommandCard res = (ICommandCard)card!;
+            ((MainPlayer)eventObject.resPlayer!).ChooseCommand(res);
         }
 
     }
