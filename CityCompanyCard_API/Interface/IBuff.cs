@@ -36,7 +36,7 @@ namespace CityCompanyCard_API.Interface
      
     
 
-        public void UpdateBuff(CardBO target)
+        public virtual void UpdateBuff(IBuff newBuff,CardBO target)
         {
             OnUpdateBuff(target);
         }

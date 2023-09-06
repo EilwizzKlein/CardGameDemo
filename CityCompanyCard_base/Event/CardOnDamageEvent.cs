@@ -1,4 +1,8 @@
-﻿using CityCompanyCard_API.Interface;
+﻿using CityCompanyCard_API;
+using CityCompanyCard_API.Interface;
+using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Card.Interface;
+using CityCompanyCard_base.Manager.CardManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +19,12 @@ namespace CityCompanyCard_base.Event
 
         public override void Run(IEventObject ev, bool isRoot)
         {
-            throw new NotImplementedException();
+            IInstanceCard card = (IInstanceCard)ev.resCard;
+            if (!card.OnBeforeDamage(ev)) { return; };
+            ApplicationContext.Instance.cardManagerFactory.getCardManager(CityCompanyCard_API.Dictionary.CardType.Instance,out ICardManager cardManager);
+            ((InstanceCardManager)cardManager).GetDamage(card, ev);
+            card.OnAfterDamage(ev);
+            ApplicationContext.Instance.RunEventQueue(isRoot);
         }
     }
 }

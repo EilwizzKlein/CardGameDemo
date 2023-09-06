@@ -92,8 +92,9 @@ namespace CityCompanyCard_API
                 _currentPlayer = player;
             }
         }
-        public void RunEventQueue()
+        public void RunEventQueue(Boolean flag)
         {
+            if (!flag) { return; }
             for (int i = 0; i < eventQueue.Count; i++)
             {
                 eventQueue[i].Run();

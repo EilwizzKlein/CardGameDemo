@@ -12,10 +12,6 @@ namespace CityCompanyCard_base.Manager.CardManager
 {
     public class NotInstanceCardManager : ICardManager
     {
-        public override void GetDamage(ICard card, IEventObject eventObject)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void PlayCard(ICard card,IEventObject eventObject)
         {

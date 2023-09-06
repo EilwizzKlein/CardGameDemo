@@ -2,6 +2,7 @@
 using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Event;
 using CityCompanyCard_base.Selector.PanelSelector.UnitSeletor;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace CityCompanyCard_base.Power.BasePower
                 //4.攻击方预检定OnBeforePower()⇒如果返回是True则继续结算
                 if (!res.OnBeforeUsePower(ev)) { return; }
                 //调用处理器
-                if (!ApplicationContext.Instance.eventHandlerManager.Attack(ev)) { return; }
+                new AttackEvent(ev).Run();
                 res.OnAfterUsePower(ev);
             }
             //结束进攻效果

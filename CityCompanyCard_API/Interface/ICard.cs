@@ -83,6 +83,16 @@ namespace CityCompanyCard_API.Card
             renderBuff();
         }
 
+        public virtual void UpdateBuff(IBuff oldBuff,IBuff newBuff)
+        {
+            oldBuff.UpdateBuff(newBuff, renderCardBO);
+            if (buffs.Contains(oldBuff))
+            {
+                buffs.Remove(oldBuff);
+                buffs.Add(newBuff);
+            }
+        }
+
         public virtual void RemoveBuff(IBuff buff)
         {
             if (buffs.Contains(buff))

@@ -80,26 +80,25 @@ namespace CityCompanyCard_base.Card.Interface
             });
         }
         //受到攻击前
-        public virtual Boolean OnBeforeAttack(IEventObject eventObject)
+        public virtual Boolean OnBeforeAttacked(IEventObject eventObject)
         {
             Boolean flag = true;
             this.attachmentZone.effectAttachment.ForEach(card =>
             {
                 if (card is IInstanceCard)
                 {
-                    flag = flag && ((IInstanceCard)card).OnBeforeAttack(eventObject);
+                    flag = flag && ((IInstanceCard)card).OnBeforeAttacked(eventObject);
                 }
             });
             return flag;
         }
-        //受到攻击时
         //受到攻击后
-        public virtual void OnAfterAttack(IEventObject eventObject) {
+        public virtual void OnAfterAttacked(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
             {
                 if (card is IInstanceCard)
                 {
-                    ((IInstanceCard)card).OnAfterAttack(eventObject);
+                    ((IInstanceCard)card).OnAfterAttacked(eventObject);
                 }
             });
         }

@@ -11,6 +11,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using CityCompanyCard_base.Dictionary;
+using CityCompanyCard_base.Event;
 
 namespace CityCompanyCard_test
 {
@@ -93,7 +94,7 @@ namespace CityCompanyCard_test
                 eventObject.targetBattleGround = new IBattleGround[] { ApplicationContext.Instance.BattleZone.GetValueOrDefault(BattlegroundConst.MAIN_BATTLE_GROUND) };
 
                 eventObject.resZone = player.hand ;
-                ApplicationContext.Instance.eventHandlerManager.PlayCard(eventObject);
+                new PlayCardEvent(eventObject).Run();
             }
         }
 

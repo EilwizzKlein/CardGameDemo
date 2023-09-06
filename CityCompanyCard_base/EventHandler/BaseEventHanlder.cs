@@ -65,39 +65,6 @@ namespace CityCompanyCard_base.EventHandler
             return false;
         }
 
-        public override bool PlayCard(IEventObject eventObject)
-        {
-            ICard card = eventObject.resCard!;
-            if (!card.OnBeforePlay(eventObject)) { return false; }
-
-            //是否为免费释放
-            if (!eventObject.resKeyValus.ContainsKey(EventObjectExtractKey.FREE_TO_USE) || eventObject.resKeyValus[EventObjectExtractKey.FREE_TO_USE] != null)
-            {
-                //费用检查,消耗费用
-                if (eventObject.resPlayer!.mana < card.renderCardBO.cost)
-                {
-                    return false;
-                }
-                eventObject.resPlayer.mana -= card.renderCardBO.cost;
-            }
-            ICardManager cm = null;
-            if (card is IInstanceCard)
-            {
-                ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.Instance, out cm);
-            }
-            else if (card is INotInstanceCard)
-            {
-                ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.NotInstance, out cm);
-            }
-            if (cm == null)
-            {
-                return false;
-            }
-            cm.PlayCard(card, eventObject);
-            card.OnAfterPlay(eventObject);
-            return true;
-        }
-
         public override bool Attack(IEventObject eventObject)
         {
             //
@@ -111,7 +78,7 @@ namespace CityCompanyCard_base.EventHandler
                 IEventObject ev = new IEventObject(eventObject);
                 IInstanceCard target = (IInstanceCard)targets[i];
                 //6.被攻击方预检定OnBeforeAttack()⇒如果返回是True则继续结算
-                if (!target.OnBeforeAttack(ev)) { continue; }
+                if (!target.OnBeforeAttacked(ev)) { continue; }
                 //8.被攻击方预检定受到伤害事件OnBeforeDamage()⇒如果返回是True则继续结算
                 if (!target.OnBeforeDamage(ev)) { continue; }
                 //10.被攻击方处理受到伤害后事件OnAfterDamage()
@@ -132,7 +99,7 @@ namespace CityCompanyCard_base.EventHandler
                     //16.被攻击方处理反击后事件OnAfterCounterattack();
                     target.OnAfterCounterattack(counterAttack);
                     //17.被攻击方处理攻击后事件OnAfterAttack();
-                    target.OnAfterAttack(ev);
+                    target.OnAfterAttacked(ev);
                 }
             }
 
