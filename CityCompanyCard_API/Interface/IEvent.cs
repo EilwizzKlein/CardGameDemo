@@ -9,24 +9,23 @@ namespace CityCompanyCard_API.Interface
     /// <summary>
     /// 配合触发器类使用,事件类
     /// </summary>
-    public class IEvent
+    public abstract class IEvent
     {
-        private List<ITrigger> TriggerList = new List<ITrigger>();
+        private IEventObject eventObject;
+        public abstract void Run(IEventObject ev, Boolean isRoot);
 
-        public void registerTrigger(ITrigger trigger) {
-            TriggerList.Add(trigger);
+        public void Run(IEventObject ev) {
+            Run(ev, true);
         }
 
-        public void unregisterrTrigger(ITrigger trigger) { 
-            TriggerList.Remove(trigger);
-        }
-
-        public void runEvent(IEventObject ev)
+        public void Run()
         {
-            TriggerList.ForEach(t =>
-            {
-                t.Run(ev);
-            });
+            Run(eventObject, false);
         }
+
+        public IEvent(IEventObject eventObject)
+        {
+            this.eventObject = new IEventObject(eventObject);
+        }   
     }
 }

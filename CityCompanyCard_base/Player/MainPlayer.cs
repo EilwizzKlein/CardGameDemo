@@ -18,6 +18,7 @@ namespace CityCompanyCard_base.Player
         public IZone readyDeck = new IZone(); //预备卡组
         public CommandZone command = new CommandZone();
         public int actionPoint;
+        public int maxActionPoint;
 
         public override void OnPlayCard(IEventObject ev)
         {
@@ -57,7 +58,7 @@ namespace CityCompanyCard_base.Player
             deck = new IZone();
             mana = 2;
             actionPoint=5;
-
+            maxActionPoint= 5;
 
             string filePath = "D:\\VS\\WorkShop\\CardGameDemo\\CityCompanyCard_base\\Save\\deck.txt"; // 替换为实际的文件路径
 

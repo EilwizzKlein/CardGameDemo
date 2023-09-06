@@ -4,6 +4,7 @@ using CityCompanyCard_API.Factory;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BattleGround;
 using CityCompanyCard_base.Dictionary;
+using CityCompanyCard_base.EventHandler;
 using CityCompanyCard_base.Manager;
 using CityCompanyCard_base.Manager.CardManager;
 using CityCompanyCard_base.Player;
@@ -32,7 +33,7 @@ namespace CityCompanyCard_base.Mode
             app.cardManagerFactory.registManagerList(CardType.Instance, new InstanceCardManager());
             app.cardManagerFactory.registManagerList(CardType.NotInstance, new NotInstanceCardManager());
             app.cardManagerFactory.registManagerList(CardType.Command, new CommandCardManager());
-            app.eventHandlerManager = new BaseEventHanlderManager();
+            app.eventHandlerManager = new BaseEventHanlder();
             return true;
         }
     }

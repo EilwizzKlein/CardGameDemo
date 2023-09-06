@@ -32,22 +32,24 @@ namespace CityCompanyCard_API.Card
 
         //抽到此卡前
         public virtual Boolean OnBeforeDraw(IEventObject eventObject) { return true; }
-        //抽到此卡时
-        public virtual void OnDraw(IEventObject eventObject) { }
         //抽到此卡后
         public virtual void OnAfterDraw(IEventObject eventObject) { }
         //打出此卡前
         public virtual Boolean  OnBeforePlay(IEventObject eventObject) { return true; }
-        //打出此卡时
-        public virtual void OnPlay(IEventObject eventObject) { }
         //打出此卡后
         public virtual void OnAfterPlay(IEventObject eventObject) { }
         //弃掉此卡前
         public virtual Boolean OnBeforeDiscard(IEventObject eventObject) { return true; }
-        //弃掉此卡时
-        public virtual void OnDiscard(IEventObject eventObject) { }
         //弃掉此卡后
         public virtual void OnAfterDiscard(IEventObject eventObject) { }
+        //变更此卡操纵者前
+        public virtual Boolean OnBeforeChangeUser(IEventObject eventObject) { return true; }
+        //变更此卡操纵者后
+        public virtual void OnAfterChangeUser(IEventObject eventObject) { }
+        //变更此卡变形前
+        public virtual Boolean OnBeforeTransform(IEventObject eventObject) { return true; }
+        //变更此卡变形后
+        public virtual void OnAfterTransform(IEventObject eventObject) { }
 
         public void Render()
         {

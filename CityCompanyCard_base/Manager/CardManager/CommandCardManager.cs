@@ -19,6 +19,7 @@ namespace CityCompanyCard_base.Manager
         {
             ICommandCard res = (ICommandCard)card!;
             ((MainPlayer)eventObject.resPlayer!).ChooseCommand(res);
+            while (res.PlayCommand(eventObject)) { };
         }
 
     }

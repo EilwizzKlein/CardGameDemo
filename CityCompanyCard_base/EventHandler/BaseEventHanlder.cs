@@ -13,16 +13,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityCompanyCard_base.Manager
+namespace CityCompanyCard_base.EventHandler
 {
-    public class BaseEventHanlderManager : EventHandlerManager
+    public class BaseEventHanlder : IEventHandler
     {
-        public override Boolean MoveCard(IEventObject eventObject)
+        public override bool MoveCard(IEventObject eventObject)
         {
             return true;
         }
 
-        public override Boolean DrawCard(IEventObject eventObject)
+        public override bool DrawCard(IEventObject eventObject)
         {
             //从玩家的卡组中抽取一张卡牌
             IPlayer? player = eventObject.resPlayer;
@@ -31,12 +31,12 @@ namespace CityCompanyCard_base.Manager
                 int drawNumber = 1;
                 if (eventObject.resKeyValus.ContainsKey(EventObjectExtractKey.DRAW_CARD_NUMBER))
                 {
-                    Boolean flag = Int32.TryParse(eventObject.resKeyValus[EventObjectExtractKey.DRAW_CARD_NUMBER], out drawNumber);
-                    drawNumber = (flag && drawNumber > 0) ? drawNumber : 1;
+                    bool flag = int.TryParse(eventObject.resKeyValus[EventObjectExtractKey.DRAW_CARD_NUMBER], out drawNumber);
+                    drawNumber = flag && drawNumber > 0 ? drawNumber : 1;
                 }
                 if (ApplicationContext.Instance.Trigger.TryGetValue(TriggerKey.ON_BEFORE_DRAW, out ITrigger trigger))
                 {
-                    trigger.Run(eventObject);
+                    trigger.runEvent(eventObject);
                 }
 
                 //执行onBeforeDrawTrigger
@@ -54,9 +54,9 @@ namespace CityCompanyCard_base.Manager
                     }
                 }
 
-                if (ApplicationContext.Instance.Trigger.TryGetValue(TriggerKey.ON_After_DRAW, out trigger))
+                if (ApplicationContext.Instance.Trigger.TryGetValue(TriggerKey.ON_AFTER_DRAW, out trigger))
                 {
-                    trigger.Run(eventObject);
+                    trigger.runEvent(eventObject);
                 }
                 //执行onAfterDrawTrigger
                 return true;
@@ -65,7 +65,7 @@ namespace CityCompanyCard_base.Manager
             return false;
         }
 
-        public override Boolean PlayCard(IEventObject eventObject)
+        public override bool PlayCard(IEventObject eventObject)
         {
             ICard card = eventObject.resCard!;
             if (!card.OnBeforePlay(eventObject)) { return false; }
@@ -81,24 +81,24 @@ namespace CityCompanyCard_base.Manager
                 eventObject.resPlayer.mana -= card.renderCardBO.cost;
             }
             ICardManager cm = null;
-            if(card is IInstanceCard)
+            if (card is IInstanceCard)
             {
                 ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.Instance, out cm);
-            }else if(card is INotInstanceCard)
+            }
+            else if (card is INotInstanceCard)
             {
                 ApplicationContext.Instance.cardManagerFactory.getCardManager(CardType.NotInstance, out cm);
             }
-            if(cm == null)
+            if (cm == null)
             {
                 return false;
             }
-            cm.PlayCard(card,eventObject);
-            card.OnPlay(eventObject);
+            cm.PlayCard(card, eventObject);
             card.OnAfterPlay(eventObject);
             return true;
         }
 
-        public override Boolean AttackEvent(IEventObject eventObject)
+        public override bool Attack(IEventObject eventObject)
         {
             //
             if (eventObject.resCard == null || eventObject.targetCard == null || eventObject.targetCard.Length <= 0) { return false; }
@@ -112,12 +112,8 @@ namespace CityCompanyCard_base.Manager
                 IInstanceCard target = (IInstanceCard)targets[i];
                 //6.被攻击方预检定OnBeforeAttack()⇒如果返回是True则继续结算
                 if (!target.OnBeforeAttack(ev)) { continue; }
-                //7.被攻击方处理攻击事件OnAttack()⇒计算修正值
-                target.OnAttack(ev);
                 //8.被攻击方预检定受到伤害事件OnBeforeDamage()⇒如果返回是True则继续结算
                 if (!target.OnBeforeDamage(ev)) { continue; }
-                //9.被攻击方处理受到伤害事件OnDamage()⇒伤害修正
-                target.OnDamage(ev);
                 //10.被攻击方处理受到伤害后事件OnAfterDamage()
                 target.OnAfterDamage(ev);
                 if (target is IUnitCard)
@@ -129,12 +125,8 @@ namespace CityCompanyCard_base.Manager
                     if (!flag) { flag = true; }
                     //12.被攻击方预检定反击事件OnBeforeCounterattack()⇒如果返回是True则继续结算
                     if (!target.OnBeforeCounterattack(counterAttack)) { continue; }
-                    //12.被攻击方处理反击事件OnCounterattack() :修改ev.value
-                    target.OnCounterattack(counterAttack);
                     //13.被反击方预检定受到伤害事件OnBeforeDamage()⇒如果返回是True则继续结算
                     if (!res.OnBeforeDamage(counterAttack)) { continue; }
-                    //14.被反击方处理受到伤害事件OnDamage()⇒伤害修正
-                    res.OnDamage(counterAttack);
                     //15.被反击方处理受到伤害后事件OnAfterDamage()
                     res.OnAfterDamage(counterAttack);
                     //16.被攻击方处理反击后事件OnAfterCounterattack();
@@ -147,8 +139,8 @@ namespace CityCompanyCard_base.Manager
             //死亡结算
             if (res.isDead)
             {
-                if (res.OnBeforeDestroy(eventObject)) { 
-                    res.OnDestroy(eventObject);
+                if (res.OnBeforeDestroy(eventObject))
+                {
                     res.OnAfterDestroy(eventObject);
                 }
             }
@@ -157,7 +149,7 @@ namespace CityCompanyCard_base.Manager
                 //为了避免参数干扰 单独拷贝事件对象
                 IEventObject ev = new IEventObject(eventObject);
                 IInstanceCard target = (IInstanceCard)targets[i];
-               
+
                 if (target.isDead)
                 {
                     IEventObject counterAttack = new IEventObject();
@@ -166,7 +158,6 @@ namespace CityCompanyCard_base.Manager
                     counterAttack.targetCard = new ICard[] { res! };
                     if (target.OnBeforeDestroy(counterAttack))
                     {
-                        target.OnDestroy(counterAttack);
                         target.OnAfterDestroy(counterAttack);
                     }
                 }
@@ -174,17 +165,17 @@ namespace CityCompanyCard_base.Manager
             return flag;
         }
 
-        public override Boolean PlayPower(IEventObject eventObject)
+        public override bool PlayPower(IEventObject eventObject)
         {
             return true;
         }
 
-        public override Boolean CreateCard(IEventObject eventObject)
+        public override bool CreateCard(IEventObject eventObject)
         {
             return true;
         }
 
-        public override Boolean GoToNextState(IEventObject eventObject)
+        public override bool GoToNextState(IEventObject eventObject)
         {
             return true;
         }

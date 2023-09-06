@@ -23,7 +23,7 @@ namespace CityCompanyCard_base.Card.Command
             id = "command_defence"; //保证ID唯一 不和其他卡重复
         }
 
-        public override bool OnAsyncPlay(IEventObject ev)
+        public override bool PlayCommand(IEventObject ev)
         {
             //获取玩家的行动点
             MainPlayer player = (MainPlayer)ev.resPlayer!;

@@ -46,14 +46,5 @@ namespace CityCompanyCard_API.Card
             this.Render();
         }
 
-        public override void OnAttack(IEventObject eventObject)
-        {
-           IEventObject ev = new IEventObject(eventObject);
-            //获取到来源的攻击力
-            int attack = ((InstanceCardBO)eventObject.resCard.renderCardBO).currentAttack;
-            ev.value = attack;
-            //结算伤害
-
-        }
     }
 }

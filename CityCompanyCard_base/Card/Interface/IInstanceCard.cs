@@ -26,10 +26,6 @@ namespace CityCompanyCard_base.Card.Interface
             this.renderCardBO = originCardBO.clone();
         }
 
-        public override void OnPlay(IEventObject eventObject)
-        {
-          
-        }
 
         public override void OnRerender()
         {
@@ -61,15 +57,6 @@ namespace CityCompanyCard_base.Card.Interface
             });
         }
         //结算能力使用
-        public virtual void OnUsePower(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnUsePower(eventObject);
-                }
-            });
-           }
         //目标相关
         //被选为目标前
         public virtual Boolean OnBeforeChoose(IEventObject eventObject) {
@@ -82,16 +69,6 @@ namespace CityCompanyCard_base.Card.Interface
                 }
             });
             return flag; }
-        //被选为目标时
-        public virtual void OnChoose(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnChoose(eventObject);
-                }
-            });
-        }
         //被选为目标后
         public virtual void OnAfterChoose(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -116,15 +93,6 @@ namespace CityCompanyCard_base.Card.Interface
             return flag;
         }
         //受到攻击时
-        public virtual void OnAttack(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnAttack(eventObject);
-                }
-            });
-        }
         //受到攻击后
         public virtual void OnAfterAttack(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -147,18 +115,6 @@ namespace CityCompanyCard_base.Card.Interface
                 }
             });
             return flag;
-        }
-        //受到攻击时
-        public virtual void OnCounterattack(IEventObject eventObject) {
-            this.Render();
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnCounterattack(eventObject);
-                }
-            });
-            eventObject.value = ((InstanceCardBO)renderCardBO).currentAttack;
         }
         //受到攻击后
         public virtual void OnAfterCounterattack(IEventObject eventObject) {
@@ -185,15 +141,6 @@ namespace CityCompanyCard_base.Card.Interface
             return flag;
         }
         //受到伤害时
-        public virtual void OnDamage(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnDamage(eventObject);
-                }
-            });
-        }
         //受到伤害后
         public virtual void OnAfterDamage(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -218,15 +165,6 @@ namespace CityCompanyCard_base.Card.Interface
             return flag;
         }
         //受到回复时
-        public virtual void OnHeal(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnHeal(eventObject);
-                }
-            });
-        }
         //受到回复后
         public virtual void OnAfterHeal(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -249,16 +187,6 @@ namespace CityCompanyCard_base.Card.Interface
                 }
             });
             return flag;
-        }
-        //被摧毁时
-        public virtual void OnDestroy(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnDestroy(eventObject);
-                }
-            });
         }
         //被摧毁后
         public virtual void OnAfterDestroy(IEventObject eventObject) {
@@ -283,16 +211,6 @@ namespace CityCompanyCard_base.Card.Interface
             });
             return flag;
         }
-        //被牺牲时
-        public virtual void OnSacrifice(IEventObject eventObject) {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnSacrifice(eventObject);
-                }
-            });
-        }
         //被牺牲后
         public virtual void OnAfterSacrifice(IEventObject eventObject) {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -303,7 +221,7 @@ namespace CityCompanyCard_base.Card.Interface
                 }
             });
         }
-
+        //死亡前
         public virtual Boolean OnBeforeDie(IEventObject eventObject)
         {
             Boolean flag = true;
@@ -316,18 +234,7 @@ namespace CityCompanyCard_base.Card.Interface
             });
             return flag;
         }
-        //被牺牲时
-        public virtual void OnDie(IEventObject eventObject)
-        {
-            attachmentZone.effectAttachment.ForEach(card =>
-            {
-                if (card is IInstanceCard)
-                {
-                    ((IInstanceCard)card).OnDie(eventObject);
-                }
-            });
-        }
-        //被牺牲后
+        //死亡后
         public virtual void OnAfterDie(IEventObject eventObject)
         {
             attachmentZone.effectAttachment.ForEach(card =>
@@ -341,5 +248,30 @@ namespace CityCompanyCard_base.Card.Interface
             Console.WriteLine("啊我死了");
         }
 
+
+        //离开战场前
+        public virtual Boolean OnBeforeLeaveBattle(IEventObject eventObject)
+        {
+            Boolean flag = true;
+            this.attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    flag = flag && ((IInstanceCard)card).OnBeforeLeaveBattle(eventObject);
+                }
+            });
+            return flag;
+        }
+        //离开战场后
+        public virtual void OnAfterLeaveBattle(IEventObject eventObject)
+        {
+            attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    ((IInstanceCard)card).OnAfterLeaveBattle(eventObject);
+                }
+            });
+        }
     }
 }

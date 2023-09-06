@@ -10,6 +10,6 @@ namespace CityCompanyCard_API.Interface.Dictionary
     public class TriggerKey
     {
         public const string ON_BEFORE_DRAW = "onBeforeDraw";
-        public const string ON_After_DRAW = "onAfterDraw";
+        public const string ON_AFTER_DRAW = "onAfterDraw";
     }
 }

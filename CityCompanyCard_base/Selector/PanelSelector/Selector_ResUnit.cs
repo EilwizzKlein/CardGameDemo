@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API.Card;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
+using CityCompanyCard_base.Card.Interface;
 using CityCompanyCard_base.Utils;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CityCompanyCard_base.Selector.PanelSelector
 {
-    public class Selector_ResUnit<T> : BasePanelSeletor<T> where T : IUnitCard
+    public class Selector_ResUnit<T> : BasePanelSeletor<T> where T : IInstanceCard
 
     {
         public delegate List<T>? Filter(IEventObject ev);

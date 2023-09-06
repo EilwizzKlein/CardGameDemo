@@ -18,6 +18,8 @@ namespace CityCompanyCard_test.unitTest
             MainPlayer player2 = new MainPlayer();
 
             player.command.AddCommand(new CommandAttack());
+            player.command.AddCommand(new CommandAttack());
+            player.command.AddCommand(new CommandAttack());
             //给玩家1创建5张手牌
             for (int i = 0; i < 5; i++)
             {

@@ -25,10 +25,10 @@ namespace CityCompanyCard_API
         public Thread SelectorThread = null;
         public CardManagerFactory? cardManagerFactory; //卡牌管理器工厂 为空避免写加载的时候忘了配置cmf
         public CardManager cardManager = new CardManager(); //卡牌管理器,用于管理卡牌的通用方法
-        public EventHandlerManager? eventHandlerManager;
+        public IEventHandler? eventHandlerManager;
         private IState? _currentState;
         public List<ICard>? renderQueue = null;
-        public List<IEffect> effectQueue = new List<IEffect>();
+        public List<IEvent> eventQueue = new List<IEvent>();
 
         public IPlayer changeNextPlayer()
         {
@@ -92,13 +92,13 @@ namespace CityCompanyCard_API
                 _currentPlayer = player;
             }
         }
-        public void RunEffectQueue()
+        public void RunEventQueue()
         {
-            for (int i = 0; i < effectQueue.Count; i++)
+            for (int i = 0; i < eventQueue.Count; i++)
             {
-                effectQueue[i].run();
+                eventQueue[i].Run();
             }
-            effectQueue.Clear();
+            eventQueue.Clear();
         }
 
         public void StartRenderQueue()

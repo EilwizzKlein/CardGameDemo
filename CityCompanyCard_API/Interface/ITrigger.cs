@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CityCompanyCard_API.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,34 @@ namespace CityCompanyCard_API.Interface
     /// <summary>
     /// 触发器自定义类
     /// </summary>
-    public abstract class ITrigger
+    public  class ITrigger
     {
-        public bool deleteSelf { get; protected set; }
+        private List<IAction> TriggerList = new List<IAction>();
 
-        public ITrigger()
+        public void registerTrigger(IAction trigger)
         {
-            deleteSelf = false; // 设置初始值为 false
+            TriggerList.Add(trigger);
         }
-        public abstract void Run(IEventObject eventObject);
+
+        public void unregisterrTrigger(IAction trigger)
+        {
+            TriggerList.Remove(trigger);
+        }
+
+        public List<IAction> GetActionByCard(ICard card)
+        {
+            return TriggerList.Where<IAction>(item=>item.resCard==card).ToList();
+        }
+
+        public void runEvent(IEventObject ev)
+        {
+            TriggerList.ForEach(t =>
+            {
+                t.Run(ev);
+            });
+        }
+
+      
 
 
     }

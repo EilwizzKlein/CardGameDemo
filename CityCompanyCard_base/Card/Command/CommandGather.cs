@@ -22,7 +22,7 @@ namespace CityCompanyCard_base.Card.Command
             id = "command_gather"; //保证ID唯一 不和其他卡重复
         }
 
-        public override bool OnAsyncPlay(IEventObject eventObject)
+        public override bool PlayCommand(IEventObject eventObject)
         {
             //获取玩家的行动点
             IEventObject ev = eventObject;

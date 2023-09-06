@@ -19,18 +19,21 @@ namespace CityCompanyCard_base.Card.Interface
             this.type = CardType.Command;
         }
 
-        public abstract bool OnAsyncPlay(IEventObject eventObject);
+        public abstract bool PlayCommand(IEventObject eventObject);
 
-        public override void OnPlay(IEventObject eventObject)
-        {
-            while (OnAsyncPlay(eventObject)) { };
-        }
+        //public override void OnPlay(IEventObject eventObject)
+        //{
+        //    while (PlayCommand(eventObject)) { };
+        //}
 
         public override Boolean OnBeforePlay(IEventObject eventObject)
         {
+            eventObject.resCard = this;
             //设置玩家行动力(AP)
             eventObject.resKeyValus.TryAdd(EventObjectExtractKey.POWER_NAME, this.originCardBO.name);
             //处理事件
+
+
             ((MainPlayer)eventObject.resPlayer).actionPoint += eventObject.modify;
             return true;
         }
@@ -39,8 +42,6 @@ namespace CityCompanyCard_base.Card.Interface
         {
             //重置玩家的AP
             eventObject.resKeyValus.TryAdd(EventObjectExtractKey.POWER_NAME, this.originCardBO.name);
-            //处理事件
-            ((MainPlayer)eventObject.resPlayer).actionPoint = 5;
         }
 
     }

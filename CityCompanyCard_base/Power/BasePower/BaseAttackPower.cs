@@ -30,10 +30,8 @@ namespace CityCompanyCard_base.Power.BasePower
                 ev.value = ((InstanceCardBO)res.renderCardBO).currentAttack;
                 //4.攻击方预检定OnBeforePower()⇒如果返回是True则继续结算
                 if (!res.OnBeforeUsePower(ev)) { return; }
-                //5.攻击方结算攻击事件OnPower()⇒计算攻击伤害,修改event.value;
-                res.OnUsePower(ev);
                 //调用处理器
-                if (!ApplicationContext.Instance.eventHandlerManager.AttackEvent(ev)) { return; }
+                if (!ApplicationContext.Instance.eventHandlerManager.Attack(ev)) { return; }
                 res.OnAfterUsePower(ev);
             }
             //结束进攻效果
