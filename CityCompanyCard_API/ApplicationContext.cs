@@ -95,11 +95,19 @@ namespace CityCompanyCard_API
         public void RunEventQueue(Boolean flag)
         {
             if (!flag) { return; }
-            for (int i = 0; i < eventQueue.Count; i++)
+            int i = 0;
+            while (eventQueue.Count > 0 && i<=100)
             {
-                eventQueue[i].Run();
+                List<IEvent> tempevent = new List<IEvent>(eventQueue);
+                eventQueue.Clear();
+                for (int i = 0; i < tempevent.Count; i++)
+                {
+                    tempevent[i].Run();
+                }
+                i++;
+                tempevent.Clear();
             }
-            eventQueue.Clear();
+         
         }
 
         public void StartRenderQueue()
