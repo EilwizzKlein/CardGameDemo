@@ -19,7 +19,7 @@ namespace CityCompanyCard_base.Event
         {
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
             //执行玩家的抽牌前行动
             IEventObject eventObject = new IEventObject(ev);

@@ -19,15 +19,13 @@ namespace CityCompanyCard_base.Event
             //需要检查的条件
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
             Boolean flag = true;
             ICard card = ev.resCard!;
             flag = card.OnBeforePlay(ev);
-            ApplicationContext.Instance.RunEventQueue(isRoot);
             if (!flag) { return; }
-            //结算事件
-           
+            //结算事件  
             //是否为免费释放
             if (!ev.resKeyValus.ContainsKey(EventObjectExtractKey.FREE_TO_USE) || ev.resKeyValus[EventObjectExtractKey.FREE_TO_USE] != null)
             {
@@ -53,7 +51,6 @@ namespace CityCompanyCard_base.Event
             }
             cm.PlayCard(card, ev);
             card.OnAfterPlay(ev);
-            ApplicationContext.Instance.RunEventQueue(isRoot);
         }
     }
 }

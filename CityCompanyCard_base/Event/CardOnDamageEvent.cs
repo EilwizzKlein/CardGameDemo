@@ -17,26 +17,24 @@ namespace CityCompanyCard_base.Event
         {
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
-            IEventObject eventObject = new IEventObject(ev);
-            IInstanceCard card = (IInstanceCard)eventObject.resCard;
-            if (!card.OnBeforeDamage(eventObject)) { return; };
+            IInstanceCard card = (IInstanceCard)ev.resCard;
+            if (!card.OnBeforeDamage(ev)) { return; };
             ApplicationContext.Instance.cardManagerFactory.getCardManager(CityCompanyCard_API.Dictionary.CardType.Instance,out ICardManager cardManager);
-            ((InstanceCardManager)cardManager).GetDamage(card, eventObject);
-            card.OnAfterDamage(eventObject);
+            ((InstanceCardManager)cardManager).GetDamage(card, ev);
+            card.OnAfterDamage(ev);
             card.Render();
             if(card.isDead)
             {
                 IEventObject cardDieEventObject = new IEventObject();
                 cardDieEventObject.resCard = card;
-                cardDieEventObject.targetCard = eventObject.targetCard;
-                cardDieEventObject.resZone = eventObject.resZone;
+                cardDieEventObject.targetCard = ev.targetCard;
+                cardDieEventObject.resZone = ev.resZone;
                 //卡牌死亡事件
                 CardDieEvent cardDie = new CardDieEvent(cardDieEventObject);
                 ApplicationContext.Instance.eventQueue.Add(cardDie);
             }
-            ApplicationContext.Instance.RunEventQueue(isRoot);
         }
     }
 }

@@ -12,8 +12,12 @@ namespace CityCompanyCard_API.Interface
     public abstract class IEvent
     {
         private IEventObject eventObject;
-        public abstract void Run(IEventObject ev, Boolean isRoot);
-
+        public abstract void OnRun(IEventObject ev, Boolean isRoot);
+        public virtual void Run(IEventObject ev, Boolean isRoot) { 
+            IEventObject eventObject = new IEventObject(ev);
+            OnRun(eventObject, isRoot);
+            ApplicationContext.Instance.RunEventQueue(isRoot);
+        }
         public void Run(IEventObject ev) {
             Run(ev, true);
         }

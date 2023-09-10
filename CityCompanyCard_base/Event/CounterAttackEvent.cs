@@ -13,7 +13,7 @@ namespace CityCompanyCard_base.Event
         {
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
         }
     }

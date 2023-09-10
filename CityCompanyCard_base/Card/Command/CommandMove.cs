@@ -4,6 +4,7 @@ using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.Instance;
 using CityCompanyCard_API.Manager;
 using CityCompanyCard_base.Card.Interface;
+using CityCompanyCard_base.Event;
 using CityCompanyCard_base.Player;
 using CityCompanyCard_base.Selector.PanelSelector;
 using System;
@@ -51,9 +52,7 @@ namespace CityCompanyCard_base.Card.Command
                     }
                     new Selector_targetZone<BattleGroundTileZone>().startISeletor(ev, out BattleGroundTileZone[] outbattleground);
                     ev.targetBattleGroundTileZone = outbattleground;
-                    if (outbattleground.Length > 0) {
-                        ZoneManager.moveCardToBattleGround(ev.resBattleGround,card, ev.targetBattleGroundTileZone[0]);
-                    }
+                    new MoveCardEvent(ev).Run(ev);
                 }
                 else
                 {

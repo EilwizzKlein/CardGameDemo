@@ -247,28 +247,51 @@ namespace CityCompanyCard_base.Card.Interface
             Console.WriteLine("啊我死了");
         }
 
-
-        //离开战场前
-        public virtual Boolean OnBeforeLeaveBattle(IEventObject eventObject)
+        public virtual Boolean OnBeforeMove(IEventObject eventObject)
         {
             Boolean flag = true;
             this.attachmentZone.effectAttachment.ForEach(card =>
             {
                 if (card is IInstanceCard)
                 {
-                    flag = flag && ((IInstanceCard)card).OnBeforeLeaveBattle(eventObject);
+                    flag = flag && ((IInstanceCard)card).OnBeforeMove(eventObject);
                 }
             });
             return flag;
         }
         //离开战场后
-        public virtual void OnAfterLeaveBattle(IEventObject eventObject)
+        public virtual void OnAfterMove(IEventObject eventObject)
         {
             attachmentZone.effectAttachment.ForEach(card =>
             {
                 if (card is IInstanceCard)
                 {
-                    ((IInstanceCard)card).OnAfterLeaveBattle(eventObject);
+                    ((IInstanceCard)card).OnAfterMove(eventObject);
+                }
+            });
+        }
+
+        //移动区域前
+        public virtual Boolean OnBeforeMoveZone(IEventObject eventObject)
+        {
+            Boolean flag = true;
+            this.attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    flag = flag && ((IInstanceCard)card).OnBeforeMoveZone(eventObject);
+                }
+            });
+            return flag;
+        }
+        //移动区域后
+        public virtual void OnAfterMoveZone(IEventObject eventObject)
+        {
+            attachmentZone.effectAttachment.ForEach(card =>
+            {
+                if (card is IInstanceCard)
+                {
+                    ((IInstanceCard)card).OnAfterMoveZone(eventObject);
                 }
             });
         }

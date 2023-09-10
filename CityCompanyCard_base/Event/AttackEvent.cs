@@ -17,7 +17,7 @@ namespace CityCompanyCard_base.Event
         {
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
             //
             if (ev.resCard == null || ev.targetCard == null || ev.targetCard.Length <= 0) { return ; }
@@ -55,7 +55,6 @@ namespace CityCompanyCard_base.Event
                     new CounterAttackEvent(counterAttack).Run(counterAttack, false);
                 }
             }
-            ApplicationContext.Instance.RunEventQueue(isRoot);
         } 
     }
 }

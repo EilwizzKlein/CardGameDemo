@@ -16,23 +16,20 @@ namespace CityCompanyCard_base.Event
         {
         }
 
-        public override void Run(IEventObject ev, bool isRoot)
+        public override void OnRun(IEventObject ev, bool isRoot)
         {
-            IEventObject eventObject =new IEventObject(ev);
-            IInstanceCard card = eventObject.resCard as IInstanceCard;
-            eventObject.targetZone = new IZone[] { card.owner.grave };
-            IZone zone = eventObject.resZone as IZone;
-            if (!card.OnBeforeDie(eventObject)) { return; }
-            //移除所有非永久buff
-            card.RemoveAllBuff();
-            zone.cardList.Remove(card);
+            IInstanceCard card = ev.resCard as IInstanceCard;
+            ev.targetZone = new IZone[] { card.owner.grave };
+            IZone zone = ev.resZone!;
+            if (!card.OnBeforeDie(ev)) { return; }
             if(zone is BattleGroundTileZone)
             {
-                ((BattleGroundTileZone)zone).getResBattleGround().CardList.Remove(card);
+                IEventObject leaveBattleEvent = new IEventObject();
+                leaveBattleEvent.resCard= card;
+                leaveBattleEvent.resZone = ev.resZone;
+                new CardMoveZoneEvent(leaveBattleEvent).Run(leaveBattleEvent, false);
             }
-            eventObject.targetZone[0].cardList.Add(card);
-            card.OnAfterDie(eventObject);
-            ApplicationContext.Instance.RunEventQueue(isRoot);
+            card.OnAfterDie(ev);
 
 
         }

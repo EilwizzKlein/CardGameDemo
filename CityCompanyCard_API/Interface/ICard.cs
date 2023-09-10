@@ -182,5 +182,23 @@ namespace CityCompanyCard_API.Card
 
         }
         public IZone GetZone() { return this.currentZone; }
+
+        public virtual Boolean OnBeforeMoveZone(IEventObject eventObject)
+        {
+            Boolean flag = true;
+            this.attachmentZone.effectAttachment.ForEach(card =>
+            {
+                    flag = flag && (card).OnBeforeMoveZone(eventObject);
+            });
+            return flag;
+        }
+        //移动区域后
+        public virtual void OnAfterMoveZone(IEventObject eventObject)
+        {
+            attachmentZone.effectAttachment.ForEach(card =>
+            {
+                    card.OnAfterMoveZone(eventObject);
+            });
+        }
     }
 }
