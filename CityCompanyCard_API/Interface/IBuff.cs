@@ -1,4 +1,5 @@
-﻿using CityCompanyCard_API.Interface.BO;
+﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Interface.BO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,6 +24,7 @@ namespace CityCompanyCard_API.Interface
         /// </summary>
         public Boolean isTemp;
 
+        public ICard? resCard;
         /// <summary>
         /// 持续计数
         /// </summary>
@@ -33,6 +35,8 @@ namespace CityCompanyCard_API.Interface
 
 
         public abstract void OnUpdateBuff(CardBO target);
+
+        public abstract void OnAddBuff(CardBO target);
      
     
 

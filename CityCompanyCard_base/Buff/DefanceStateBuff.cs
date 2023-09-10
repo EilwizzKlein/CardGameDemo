@@ -32,5 +32,14 @@ namespace CityCompanyCard_base.Buff
                 target.tag.Add("防御姿态");
             }
         }
+
+        public override void OnAddBuff(CardBO target)
+        {
+            //给这张卡加上防御姿态buff
+            if (!target.tag.Contains("防御姿态"))
+            {
+                target.tag.Add("防御姿态");
+            }
+        }
     }
 }

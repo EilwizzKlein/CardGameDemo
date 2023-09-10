@@ -7,10 +7,9 @@ using CityCompanyCard_API.Interface;
 
 namespace CityCompanyCard_API.Zone
 {
-    public class DeckZone : IZone
+    public class MainDeckZone : IZone
     {
-        public DeckZone() {
-            this.max = 60;
+        public MainDeckZone() {
         }
 
     }

@@ -15,7 +15,7 @@ namespace CityCompanyCard_base.Player
 {
     public class MainPlayer:IPlayer
     {
-        public IZone readyDeck = new IZone(); //预备卡组
+        public IZone readyDeck; //预备卡组
         public CommandZone command = new CommandZone();
         public int actionPoint;
         public int maxActionPoint;
@@ -52,10 +52,10 @@ namespace CityCompanyCard_base.Player
         }
         public MainPlayer() {
             renderCard = new IPlayerCard();
-            readyDeck = new IZone();
+            readyDeck = new ReadyDeckZone();
             hand = new HandZone();
             grave = new IZone();
-            deck = new IZone();
+            deck = new MainDeckZone();
             mana = 2;
             actionPoint=5;
             maxActionPoint= 5;

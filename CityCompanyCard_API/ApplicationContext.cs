@@ -95,8 +95,9 @@ namespace CityCompanyCard_API
         public void RunEventQueue(Boolean flag)
         {
             if (!flag) { return; }
-            int i = 0;
-            while (eventQueue.Count > 0 && i<=100)
+            //尝试次数限制
+            int testTime = 0;
+            while (eventQueue.Count > 0 && testTime <= 100)
             {
                 List<IEvent> tempevent = new List<IEvent>(eventQueue);
                 eventQueue.Clear();
@@ -104,7 +105,7 @@ namespace CityCompanyCard_API
                 {
                     tempevent[i].Run();
                 }
-                i++;
+                testTime++;
                 tempevent.Clear();
             }
          

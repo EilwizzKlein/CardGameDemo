@@ -1,30 +1,30 @@
-﻿using CityCompanyCard_API.Interface;
+﻿using CityCompanyCard_API.Card;
+using CityCompanyCard_API.Interface;
 using CityCompanyCard_API;
+using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Buff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CityCompanyCard_API.Manager;
-using CityCompanyCard_API.Card;
-using CityCompanyCard_base.Buff;
-using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Player;
 using CityCompanyCard_base.Event;
 
 namespace CityCompanyCard_test.unitTest
 {
-    internal class testBuff
+    public class testDraw
     {
-        public static void start() {
+        public static void start()
+        {
             //创建一张卡给主要玩家
-            IPlayer player = ApplicationContext.Instance.GetCurrentPlayer()!;
-           //创建事件对象
-           IEventObject ev = new IEventObject();
+            MainPlayer player = ApplicationContext.Instance.GetCurrentPlayer()! as MainPlayer;
+            //创建事件对象
+            IEventObject ev = new IEventObject();
             ev.resPlayer = player;
-            ev.targetZone = new IZone[] { player.deck };
-            new DrawCardEvent(ev);
+            ev.targetZone = new IZone[] { player.deck, player.deck, player.deck, player.deck, player.readyDeck, player.readyDeck, player.readyDeck };
 
-
+            new DrawCardEvent(ev).Run();
             IUnitCard unitCard = (IUnitCard)player.hand.cardList[0];
             //打印此卡的攻击力
             Console.WriteLine("打印此卡的攻击力: 1 1");

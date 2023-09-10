@@ -38,8 +38,8 @@ namespace CityCompanyCard_test
                     //构建EventObject;
                     IEventObject eventObject = new IEventObject();
                     eventObject.resPlayer = player;
-                    eventObject.resZone = player.hand;
-                    ApplicationContext.Instance.eventHandlerManager.DrawCard(eventObject);
+                    eventObject.targetZone = new IZone[] { player.hand };
+                    new DrawCardEvent(eventObject);
                     break;
                 case "SHOW":
                     showCardListOnlyName(player.hand.cardList);

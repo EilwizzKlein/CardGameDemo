@@ -30,10 +30,10 @@ namespace CityCompanyCard_API.Interface
         public string getUUID() { return UUID; }
 
         public virtual void DrawCard(int cardNumber) {
-            IEventObject eventObject = new IEventObject();
-            eventObject.resPlayer = this;
-            eventObject.resKeyValus.Add(EventObjectExtractKey.DRAW_CARD_NUMBER, cardNumber.ToString());
-            ApplicationContext.Instance.eventHandlerManager!.DrawCard(eventObject);
+            //IEventObject eventObject = new IEventObject();
+            //eventObject.resPlayer = this;
+            //eventObject.resKeyValus.Add(EventObjectExtractKey.DRAW_CARD_NUMBER, cardNumber.ToString());
+            //ApplicationContext.Instance.eventHandlerManager!.DrawCard(eventObject);
         }
 
         public virtual void OnPlayCard(IEventObject ev)
@@ -96,5 +96,8 @@ namespace CityCompanyCard_API.Interface
         {
             return true;
         }
+
+        public virtual Boolean OnBeforeDraw(IEventObject ev) { return true; }
+        public virtual void OnAfterDraw(IEventObject ev) { }
     }
 }

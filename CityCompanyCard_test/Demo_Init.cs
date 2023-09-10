@@ -62,8 +62,8 @@ namespace CityCompanyCard_test
             //testBuff.start();
             //testCommand.start();
             //testMoveCommand.start();
-            //testGather.start();
-            testAttackCommand.start();
+            testDraw.start();
+            //testAttackCommand.start();
 
             while (TestHandle.flag)
             {

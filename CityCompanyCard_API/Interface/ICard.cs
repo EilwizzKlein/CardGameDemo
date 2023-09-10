@@ -80,7 +80,8 @@ namespace CityCompanyCard_API.Card
         public virtual void GainBuff(IBuff buff)
         {
             buffs.Add(buff);
-            renderBuff();
+            buff.resCard = this;
+            buff.OnAddBuff(this.renderCardBO);
         }
 
         public virtual void UpdateBuff(IBuff oldBuff,IBuff newBuff)

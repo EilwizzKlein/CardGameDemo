@@ -1,6 +1,7 @@
 ﻿using CityCompanyCard_API.Interface;
 using CityCompanyCard_API.Interface.BO;
 using CityCompanyCard_base.BO;
+using CityCompanyCard_base.Card.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace CityCompanyCard_base.Buff
         public override void OnUpdateBuff(CardBO target)
         {
             throw new NotImplementedException();
+        }
+
+        public override void OnAddBuff(CardBO target)
+        {
+            ((InstanceCardBO)target).currentHealth -= this.damageValue;
         }
     }
 }

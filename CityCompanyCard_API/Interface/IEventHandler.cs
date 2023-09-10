@@ -10,8 +10,6 @@ namespace CityCompanyCard_API.Interface
     public abstract class IEventHandler
     {
         public abstract bool MoveCard(IEventObject eventObject);
-
-        public abstract bool DrawCard(IEventObject eventObject);
         public abstract bool Attack(IEventObject eventObject);
         public abstract bool PlayPower(IEventObject eventObject);
 

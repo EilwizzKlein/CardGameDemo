@@ -63,11 +63,34 @@ namespace CityCompanyCard_base.Selector.PanelSelector
                     return onSelector(ev, filter, out output);
                 }
             }
+            if (command == "MC")
+            {
+                List<T> select = new List<T>();
+                Console.WriteLine("请输入编号,以,分隔");
+                string[] indexs = Console.ReadLine().Split(',');
+                if(indexs.Length > ev.value)
+                {
+                    Console.WriteLine("超出限制数,请重新输入");
+                    return onSelector(ev, filter, out output);
+                }
+                for (int i = 0; i < indexs.Length; i++)
+                {
+                    bool flag = int.TryParse(indexs[i], out int index);
+                    if (flag && index < filter.Length)
+                    {
+                        select.Add(filter[index]);
+                     
+                    }
+                }
+                output = select.ToArray();
+                return true;
+            }
             else
             {
                 return false;
             }
         }
+
         public override void renderSeletor(IEventObject ev, T[] filter)
         {
             if (filter == null || filter.Length == 0)
