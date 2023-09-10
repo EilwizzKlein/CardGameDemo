@@ -43,7 +43,7 @@ namespace CityCompanyCard_base.Event
                 target.OnAfterAttacked(ev);
             }
             ApplicationContext.Instance.RunEventQueue(isRoot);
-            for (int i = 0; i < targets.Length; i++)
+            for (int i = 0; i < targets.Length; i++)    
             {
                 IInstanceCard target = (IInstanceCard)targets[i];
                 if (target is IUnitCard)
