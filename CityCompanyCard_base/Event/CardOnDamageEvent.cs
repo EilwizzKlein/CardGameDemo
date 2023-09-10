@@ -1,4 +1,4 @@
-﻿using CityCompanyCard_API;
+﻿    using CityCompanyCard_API;
 using CityCompanyCard_API.Interface;
 using CityCompanyCard_base.BO;
 using CityCompanyCard_base.Card.Interface;
@@ -19,11 +19,23 @@ namespace CityCompanyCard_base.Event
 
         public override void Run(IEventObject ev, bool isRoot)
         {
-            IInstanceCard card = (IInstanceCard)ev.resCard;
-            if (!card.OnBeforeDamage(ev)) { return; };
+            IEventObject eventObject = new IEventObject(ev);
+            IInstanceCard card = (IInstanceCard)eventObject.resCard;
+            if (!card.OnBeforeDamage(eventObject)) { return; };
             ApplicationContext.Instance.cardManagerFactory.getCardManager(CityCompanyCard_API.Dictionary.CardType.Instance,out ICardManager cardManager);
-            ((InstanceCardManager)cardManager).GetDamage(card, ev);
-            card.OnAfterDamage(ev);
+            ((InstanceCardManager)cardManager).GetDamage(card, eventObject);
+            card.OnAfterDamage(eventObject);
+            card.Render();
+            if(card.isDead)
+            {
+                IEventObject cardDieEventObject = new IEventObject();
+                cardDieEventObject.resCard = card;
+                cardDieEventObject.targetCard = eventObject.targetCard;
+                cardDieEventObject.resZone = eventObject.resZone;
+                //卡牌死亡事件
+                CardDieEvent cardDie = new CardDieEvent(cardDieEventObject);
+                ApplicationContext.Instance.eventQueue.Add(cardDie);
+            }
             ApplicationContext.Instance.RunEventQueue(isRoot);
         }
     }

@@ -94,6 +94,24 @@ namespace CityCompanyCard_API.Card
             }
         }
 
+        public virtual void RemoveAllBuff()
+        {
+           List<IBuff> tempBuffs = new List<IBuff>();
+           for(int i = 0;i< buffs.Count;i++)
+            {
+                if (buffs[i].isEternal)
+                {
+                    tempBuffs.Add(buffs[i]);
+                }
+                else
+                {
+                    buffs[i].OnRemove(renderCardBO);
+                }
+            }
+           buffs.Clear();
+            buffs = tempBuffs;
+        }
+
         public virtual void RemoveBuff(IBuff buff)
         {
             if (buffs.Contains(buff))

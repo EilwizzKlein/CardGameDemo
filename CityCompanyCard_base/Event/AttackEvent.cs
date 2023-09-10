@@ -35,6 +35,7 @@ namespace CityCompanyCard_base.Event
             {
                 IInstanceCard target = (IInstanceCard)targets[i];
                 IEventObject damegeEvent = new IEventObject();
+                damegeEvent.resZone = target.GetZone();
                 damegeEvent.resCard = target;
                 damegeEvent.targetCard =new ICard[] { res };
                 damegeEvent.value = ((InstanceCardBO)res.renderCardBO).currentAttack;
